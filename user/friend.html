@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html ng-app="friendsApp">
+
+<head>
+    <title>Thêm Bạn Bè vào Chuyến Đi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <style>
+        body {
+            background: linear-gradient(to right, #43cea2, #185a9d);
+            /* Gradient màu xanh */
+            font-family: 'Roboto', sans-serif;
+            padding: 40px;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 900px;
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .form-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            font-weight: 700;
+            color: #2d3436;
+            text-align: center;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #636e72;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #dfe6e9;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #43cea2;
+            box-shadow: 0 0 5px rgba(67, 206, 162, 0.3);
+        }
+
+        .btn-primary,
+        .btn-danger,
+        .btn-secondary {
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin-right: 5px;
+        }
+
+        .btn-primary {
+            background-color: #43cea2;
+            border-color: #43cea2;
+        }
+
+        .btn-primary:hover {
+            background-color: #2d98da;
+            border-color: #2d98da;
+        }
+
+        .btn-danger {
+            background-color: #ff4757;
+            border-color: #ff4757;
+        }
+
+        .btn-danger:hover {
+            background-color: #e84118;
+            border-color: #e84118;
+        }
+
+        .btn-secondary {
+            background-color: #636e72;
+            border-color: #636e72;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2f3640;
+            border-color: #2f3640;
+        }
+
+        .list-card {
+            border: 1px solid #dfe6e9;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        .card-details {
+            font-size: 14px;
+            color: #636e72;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            color: #fff;
+        }
+
+        .status-pending {
+            background-color: #f39c12;
+        }
+
+        .status-confirmed {
+            background-color: #27ae60;
+        }
+
+        .status-rejected {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+
+<body ng-controller="FriendsController">
+    <div class="container">
+        <h2 class="form-title">Thêm Bạn Bè vào Chuyến Đi</h2>
+        <form ng-submit="addOrUpdateFriend()">
+            <div class="mb-3">
+                <label for="id" class="form-label">ID</label>
+                <input type="text" id="id" class="form-control" ng-model="friend.id" required placeholder="Nhập ID">
+            </div>
+            <div class="mb-3">
+                <label for="userTarget" class="form-label">User Target</label>
+                <input type="text" id="userTarget" class="form-control" ng-model="friend.userTarget" required
+                    placeholder="Nhập User Target">
+            </div>
+            <div class="mb-3">
+                <label for="userSrc" class="form-label">User Src</label>
+                <input type="text" id="userSrc" class="form-control" ng-model="friend.userSrc" required
+                    placeholder="Nhập User Src">
+            </div>
+            <div class="mb-3">
+                <label for="createDate" class="form-label">Create Date</label>
+                <input type="date" id="createDate" class="form-control" ng-model="friend.createDate" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select id="status" class="form-control" ng-model="friend.status" required>
+                    <option value="">Chọn Trạng Thái</option>
+                    <option value="pending">Pending</option>
+                    <option value="confirmed">Confirmed</option>
+                    <option value="rejected">Rejected</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">{{ isEditing ? "Cập Nhật" : "Thêm Bạn Bè" }}</button>
+        </form>
+        <hr>
+        <h4 class="text-center">Danh Sách Bạn Bè</h4>
+        <div class="list-card" ng-repeat="item in friends">
+            <div class="card-header">
+                ID: {{ item.id }} <br> User Target: {{ item.userTarget }} <br> User Src: {{ item.userSrc }}
+            </div>
+            <div class="card-details">
+                Create Date: {{ item.createDate }} <br>
+                Status: <span class="status-badge" ng-class="{
+                    'status-pending': item.status === 'pending',
+                    'status-confirmed': item.status === 'confirmed',
+                    'status-rejected': item.status === 'rejected'
+                }">{{ item.status }}</span>
+            </div>
+            <div class="mt-3">
+                <button class="btn btn-secondary" ng-click="editFriend(item, $index)">Chỉnh Sửa</button>
+                <button class="btn btn-danger" ng-click="deleteFriend($index)">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app/friend.js"></script>
+</body>
+
+</html>
