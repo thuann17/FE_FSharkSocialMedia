@@ -1,0 +1,194 @@
+<section>
+  <div class="gap2 gray-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row merged20" id="page-contents">
+            <div class="user-profile">
+              <figure>
+                <div class="edit-pp">
+                  <label class="fileContainer">
+                    <i class="fa fa-camera"></i>
+                    <input type="file" />
+                  </label>
+                </div>
+                <img src="images/resources/profile-image.jpg" alt="" />
+              </figure>
+
+              <div class="profile-section">
+                <div class="row">
+                  <div class="col-lg-2 col-md-3">
+                    <div class="profile-author">
+                      <div class="profile-author-thumb">
+                        <img alt="author" src="images/resources/author.jpg" />
+                        <div class="edit-dp">
+                          <label class="fileContainer">
+                            <i class="fa fa-camera"></i>
+                            <input type="file" />
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="author-content">
+                        <a
+                          id="username1"
+                          ng-model="username1"
+                          class="h6 author-name"
+                          href="#!/{{user.username}}"
+                          >{{user.lastname}} {{user.firstname}}</a
+                        >
+                        <div class="country">{{ user.currency }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-10 col-md-9">
+                    <ul class="profile-menu">
+                      <li>
+                        <a class="" href="timeline.html">Dòng thời gian</a>
+                      </li>
+                      <li>
+                        <a class="" href="#!/{{user.username}}">Về tôi</a>
+                      </li>
+                      <li>
+                        <a class="active" href="#!/{{user.username}}/friends"
+                          >Gợi ý kết bạn</a
+                        >
+                      </li>
+                      <li>
+                        <a class="" href="timeline-friends.html">Ảnh</a>
+                      </li>
+                    </ul>
+                    <ol class="folw-detail">
+                      <li><span>Followers</span><ins>1.3K</ins></li>
+                      <li><span>Following</span><ins>22</ins></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- user profile banner  -->
+            <div class="col-lg-12">
+              <div class="central-meta">
+                <div class="title-block">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="align-left">
+                        <h5>Yêu cầu kết bạn: ({{followers.length}})</h5>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- title block -->
+              <div class="central-meta padding30">
+                <div class="row">
+                  <div
+                    class="col-lg-3 col-md-6 col-sm-6"
+                    ng-repeat="follower in followers"
+                  >
+                    <div class="friend-box">
+                      <figure>
+                        <img src="images/resources/frnd-cover1.jpg" alt="" />
+                        <span>Followers: 120</span>
+                      </figure>
+                      <div class="frnd-meta">
+                        <img src="images/resources/frnd-figure1.jpg" alt="" />
+                        <div class="frnd-name">
+                          <a href="#!/{{user.username}}" title=""
+                            >{{ follower.friendName }}
+                          </a>
+                          <span>{{follower.userTarget.currency}}</span>
+                        </div>
+                        <ul class="frnd-info"></ul>
+                        <a class="send-mesg"
+                          >Bạn chung: {{ mutualFriendCount }}</a
+                        >
+                        <br />
+                        <button
+                          class="btn-blue"
+                          ng-click="addFriend(friend.username, user.username)"
+                        >
+                          Chấp nhận
+                        </button>
+                        <button
+                          class="btn-danger"
+                          ng-click="deleteFriend(follower.id)"
+                        >
+                          Xóa
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-12">
+              <div class="central-meta">
+                <div class="title-block">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="align-left">
+                        <h5>Gợi ý kết bạn:</h5>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="row merged20">
+                        <div class="col-lg-7 col-lg-7 col-sm-7">
+                          <form method="post">
+                            <input type="text" placeholder="Tìm kiếm" />
+                            <button type="submit">
+                              <i class="fa fa-search"></i>
+                            </button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- title block -->
+              <div class="central-meta padding30">
+                <div class="row">
+                  <div
+                    class="col-lg-3 col-md-6 col-sm-6"
+                    ng-repeat="friend in usersWithoutFriends"
+                  >
+                    <div class="friend-box">
+                      <figure>
+                        <img src="images/resources/frnd-cover1.jpg" alt="" />
+                        <span>Followers: 120</span>
+                      </figure>
+                      <div class="frnd-meta">
+                        <img src="images/resources/frnd-figure1.jpg" alt="" />
+                        <div class="frnd-name">
+                          <a href="#!/{{user.username}}" title=""
+                            >{{ friend.lastname }} {{friend.firstname}}</a
+                          >
+                          <span>{{friend.currency}}</span>
+                        </div>
+                        <ul class="frnd-info"></ul>
+                        <a class="send-mesg"
+                          >Bạn chung: {{ mutualFriendCount }}</a
+                        >
+                        <br />
+                        <a class="send-mesg" href="#" title="">Message</a>
+
+                        <button
+                          class="btn-blue"
+                          ng-click="addFriend(friend.username, user.username)"
+                        >
+                          Kết bạn
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- content -->
