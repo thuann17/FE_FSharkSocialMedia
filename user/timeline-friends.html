@@ -1,3 +1,4 @@
+
 <section>
   <div class="gap2 gray-bg">
     <div class="container">
@@ -44,7 +45,7 @@
                   <div class="col-lg-10 col-md-9">
                     <ul class="profile-menu">
                       <li>
-                        <a class="" href="timeline.html">Dòng thời gian</a>
+                        <a class="" href="#!/{{user.username}}/timeline">Dòng thời gian</a>
                       </li>
                       <li>
                         <a class="" href="#!/{{user.username}}">Về tôi</a>
@@ -94,7 +95,7 @@
                       <div class="frnd-meta">
                         <img src="images/resources/frnd-figure1.jpg" alt="" />
                         <div class="frnd-name">
-                          <a href="#!/{{user.username}}" title=""
+                          <a href="#!/{{follower.friendUserName}}" title=""
                             >{{ follower.friendName }}
                           </a>
                           <span>{{follower.userTarget.currency}}</span>
@@ -167,9 +168,9 @@
                           <span>{{friend.currency}}</span>
                         </div>
                         <ul class="frnd-info"></ul>
-                        <a class="send-mesg"
+                        <!-- <a class="send-mesg"
                           >Bạn chung: {{ mutualFriendCount }}</a
-                        >
+                        > -->
                         <br />
                         <a class="send-mesg" href="#" title="">Message</a>
 
@@ -191,4 +192,3 @@
     </div>
   </div>
 </section>
-<!-- content -->

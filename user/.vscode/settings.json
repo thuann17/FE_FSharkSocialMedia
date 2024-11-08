@@ -1,0 +1,10 @@
+{
+    "liveServer.settings.port": 5501,
+    "window.autoDetectColorScheme": false,
+    "window.commandCenter": true,
+    "breadcrumbs.enabled": true,
+    "ipynb.pasteImagesAsAttachments.enabled": true,
+    "editor.folding": true,
+    "editor.suggest.showFolders": true,
+    "explorer.compactFolders": false
+}

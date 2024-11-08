@@ -1,3 +1,4 @@
+
 <section>
   <div class="gap2 gray-bg">
     <div class="container">
@@ -39,10 +40,10 @@
                   <div class="col-lg-10 col-md-9">
                     <ul class="profile-menu">
                       <li>
-                        <a class="" href="timeline.html">Dòng thời gian</a>
+                        <a class="" href="#!/{{user.username}}/timeline">Dòng thời gian</a>
                       </li>
                       <li>
-                        <a class="active" href="about.html">Về tôi</a>
+                        <a class="active" href="#!/{{user.username}}">Về tôi</a>
                       </li>
                       <li>
                         <a class="" href="#!/{{user.username}}/friends">Gợi ý kết bạn</a>
@@ -113,7 +114,7 @@
                         height="50"
                       />
                       <div class="ml-3" >
-                        <a href="#!/{{friend.friendName}}" title="" class="font-weight-bold">{{ friend.friendName }}</a>
+                        <a href="#!/{{friend.friendUserName}}" title="" class="font-weight-bold">{{ friend.friendName }}</a>
                         <span class="d-block text-muted">1 mutual friend</span>
                         <ul class="list-inline mt-1">
                           <li class="list-inline-item">

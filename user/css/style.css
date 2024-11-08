@@ -18518,6 +18518,7 @@ table.adition tbody tr td {
 .modal{
 	z-index: 999999 !important;
 }
+<<<<<<< HEAD
 .button-container {
     display: flex;               /* Use flexbox for alignment */
     justify-content: flex-end;   /* Align the button to the right */
@@ -18565,3 +18566,6 @@ table.adition tbody tr td {
 .btn-danger:focus {
     outline: none;               /* Remove focus outline */
 }
+=======
+
+>>>>>>> main

@@ -1,7 +1,7 @@
 app.service("UserService", function($http, API) {
     // Method to get user information based on username
     this.getUserByUsername = function(username) {
-        return $http.get(API + "about/" + username)
+        return $http.get(`${API}about/${username}`)
             .then(function(response) {
                 return response.data; // Return user data
             })

@@ -1,4 +1,5 @@
 var app = angular.module("myApp", ["ngRoute"]);
+
 // var API = "http://localhost:8080/api/";
 app.constant("API", "http://localhost:8080/api/");
 
@@ -25,5 +26,6 @@ app.config(function ($routeProvider) {
       templateUrl: "assets/contentdetail.html",
       controller: "postDetailCtrl",
     })
+
     
 });
