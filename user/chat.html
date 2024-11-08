@@ -1,166 +1,94 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="chatApp">
+<html lang="en" ng-app="myApp">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chat Application</title>
+    <title>Private Messaging</title>
+    <link rel="stylesheet" href="css/main.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/color.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.0/sockjs.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-    <link rel="stylesheet" href="/user/css/main.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-cookies.js"></script>
   </head>
-  <body ng-controller="ChatController">
-    <div id="username-page" ng-hide="connected">
-      <form id="usernameForm" ng-submit="connect()">
-        <input
-          type="text"
-          id="name"
-          ng-model="name"
-          placeholder="Enter your name"
-          required
-        />
-        <button type="submit">Start Chat</button>
-      </form>
-    </div>
-
-    <div id="chat-page" ng-show="connected">
-      <ul id="messageArea">
-        <li ng-repeat="message in messages">
-          <i ng-style="{'background-color': getAvatarColor(message.sender)}"
-            >{{message.sender[0]}}</i
+  <body>
+    <div ng-controller="ChatController">
+      <div class="mesg-peple">
+        <ul class="nav nav-tabs nav-tabs--vertical msg-pepl-list">
+          <li
+            class="nav-item"
+            ng-repeat="friend in friends"
+            ng-class="{ 'unread': friend.unread }"
           >
-          <span>{{message.sender}}</span>
-          <p>{{message.content}}</p>
-        </li>
-      </ul>
+            <a data-toggle="tab" ng-click="selectFriend(friend)">
+              <figure>
+                <span
+                  class="status"
+                  ng-class="{
+                                'f-online': friend.status === 'online',
+                                'f-offline': friend.status === 'offline'
+                            }"
+                ></span>
+              </figure>
+              <div class="user-name">
+                <h6>
+                  {{ friend.lastname || 'N/A' }} {{ friend.firstname || 'N/A' }}
+                </h6>
+                <span
+                  >{{ friend.status === 'online' ? 'Online' : 'Offline' }}</span
+                >
+                <!-- Hiển thị tên người dùng ở đây -->
+                <div>Username: {{ friend.username || 'Unknown' }}</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
 
-      <form id="messageForm" ng-submit="sendMessage()">
-        <input
-          type="text"
-          id="message"
-          ng-model="messageContent"
-          placeholder="Type a message..."
-          required
-        />
-        <button type="submit">Send</button>
-      </form>
-      <div class="connecting" ng-show="connectingMessage">
-        {{connectingMessage}}
+      <div class="col-lg-8 col-md-8">
+        <div class="mesge-area">
+          <ul class="conversations">
+            <li
+              ng-repeat="msg in messages"
+              ng-class="{'me': msg.sender === username, 'you': msg.sender !== username}"
+            >
+              <div class="text-box">
+                <p>{{ msg.content }}</p>
+                <span>
+                  <i class="ti-check"></i><i class="ti-check"></i> {{ msg.time |
+                  date:'shortTime' }}
+                </span>
+              </div>
+            </li>
+          </ul>
+          <div ng-if="messages.length === 0">
+            No messages yet. Start a conversation!
+          </div>
+        </div>
+
+        <div class="message-writing-box">
+          <form ng-submit="sendMessage()">
+            <div class="text-area">
+              <input
+                type="text"
+                placeholder="Write your message here..."
+                ng-model="chatMessage.content"
+                required
+              />
+              <button type="submit"><i class="fa fa-paper-plane-o"></i></button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1.5.0/dist/sockjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+    <script src="js/main.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="/user/app.js"></script>
+    <script src="/user/js/service/apiService.js"></script>
+    <script src="/user/js/controller/ChatController.js"></script>
   </body>
-  <script>
-    "use strict";
-
-    var app = angular.module("chatApp", []);
-
-    app.controller("ChatController", [
-      "$scope",
-      function ($scope) {
-        $scope.name = "";
-        $scope.messages = [];
-        $scope.connected = false;
-        $scope.connectingMessage = "";
-
-        var stompClient = null;
-        var colors = [
-          "#2196F3",
-          "#32c787",
-          "#00BCD4",
-          "#ff5652",
-          "#ffc107",
-          "#ff85af",
-          "#FF9800",
-          "#39bbb0",
-        ];
-
-        // Function to establish WebSocket connection
-        $scope.connect = function () {
-          if ($scope.name.trim()) {
-            $scope.connected = true;
-            $scope.connectingMessage = "Connecting...";
-
-            // Initialize SockJS and Stomp
-            var socket = new SockJS("http://localhost:8080/ws");
-            stompClient = Stomp.over(socket);
-
-            stompClient.connect(
-              {},
-              function (frame) {
-                // On successful connection
-                onConnected();
-              },
-              function (error) {
-                // On error
-                $scope.connectingMessage =
-                  "Could not connect to WebSocket server. Please refresh this page to try again!";
-                $scope.$apply();
-              }
-            );
-          }
-        };
-
-        // Function to handle successful connection
-        function onConnected() {
-          // Subscribe to the public topic
-          stompClient.subscribe("/topic/public", function (payload) {
-            onMessageReceived(JSON.parse(payload.body));
-          });
-
-          // Send JOIN message to server
-          stompClient.send(
-            "/app/chat.addUser",
-            {},
-            JSON.stringify({
-              sender: $scope.name,
-              type: "JOIN",
-            })
-          );
-
-          $scope.connectingMessage = "";
-          $scope.$apply();
-        }
-
-        // Function to send chat messages
-        $scope.sendMessage = function () {
-          if ($scope.messageContent.trim() && stompClient) {
-            var chatMessage = {
-              sender: $scope.name,
-              content: $scope.messageContent,
-              type: "CHAT",
-            };
-
-            stompClient.send(
-              "/app/chat.sendMessage",
-              {},
-              JSON.stringify(chatMessage)
-            );
-            $scope.messageContent = ""; // Clear the input field after sending
-          }
-        };
-
-        // Function to handle received messages
-        function onMessageReceived(message) {
-          if (message.type === "JOIN") {
-            message.content = message.sender + " joined!";
-          } else if (message.type === "LEAVE") {
-            message.content = message.sender + " left!";
-          }
-
-          $scope.messages.push(message);
-          $scope.$apply();
-        }
-
-        // Function to assign colors to avatars
-        $scope.getAvatarColor = function (messageSender) {
-          var hash = 0;
-          for (var i = 0; i < messageSender.length; i++) {
-            hash = 31 * hash + messageSender.charCodeAt(i);
-          }
-          var index = Math.abs(hash % colors.length);
-          return colors[index];
-        };
-      },
-    ]);
-  </script>
 </html>

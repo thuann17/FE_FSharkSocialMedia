@@ -1,0 +1,339 @@
+<div class="content-body">
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-1">
+          <div class="card-body">
+            <h3 class="card-title text-white">Số lượng bài đăng</h3>
+            <div class="d-inline-block">
+              <h2 class="text-white">{{postCount}}</h2>
+              <p class="text-white mb-0">
+                <select
+                  class="opacity-5 btn"
+                  id="yearSelect"
+                  ng-model="selectedYear"
+                  ng-change="fetchPostsByYear(selectedYear)"
+                >
+                  <option value="">Chọn năm</option>
+                  <option
+                    ng-repeat="year in years"
+                    value="{{ year }}"
+                    class="fs-4"
+                  >
+                    {{ year }}
+                  </option>
+                </select>
+              </p>
+            </div>
+            <span class="float-right display-5 opacity-5"
+              ><i class="fa fa-shopping-cart"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-2">
+          <div class="card-body">
+            <h3 class="card-title text-white">Tổng số chuyến đi</h3>
+            <div class="d-inline-block">
+              <h2 class="text-white">{{tripCount}}</h2>
+              <p class="text-white mb-0">
+                <select
+                  class="opacity-5 btn"
+                  id="tripYearSelect"
+                  ng-model="selectedTripYear"
+                  ng-change="fetchTripsByYear(selectedTripYear)"
+                >
+                  <option value="">Chọn năm</option>
+                  <option
+                    ng-repeat="year in years"
+                    value="{{ year }}"
+                    class="fs-4"
+                  >
+                    {{ year }}
+                  </option>
+                </select>
+              </p>
+            </div>
+            <span class="float-right display-5 opacity-5"
+              ><i class="fa fa-money"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-3">
+          <div class="card-body">
+            <h3 class="card-title text-white">New Customers</h3>
+            <div class="d-inline-block">
+              <h2 class="text-white">4565</h2>
+              <p class="text-white mb-0">Jan - March 2019</p>
+            </div>
+            <span class="float-right display-5 opacity-5"
+              ><i class="fa fa-users"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card gradient-4">
+          <div class="card-body">
+            <h3 class="card-title text-white">Customer Satisfaction</h3>
+            <div class="d-inline-block">
+              <h2 class="text-white">99%</h2>
+              <p class="text-white mb-0">Jan - March 2019</p>
+            </div>
+            <span class="float-right display-5 opacity-5"
+              ><i class="fa fa-heart"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row d-flex justify-content-center">
+      <div class="col-lg-3 col-sm-6" style="margin-top: 50px">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <h4 class="gradient-3">Top 2 server</h4>
+              <img src="./images/users/8.jpg" class="rounded-circle" alt="" />
+              <h5 class="mt-3 mb-1">Ana Liem</h5>
+              <p class="m-0">Senior Manager</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3 col-sm-6">
+        <div class="card-body">
+          <div class="text-center">
+            <h4 class="gradient-1">Top 1 server</h4>
+            <img src="./images/users/5.jpg" class="rounded-circle" alt="" />
+            <h5 class="mt-3 mb-1">John Abraham</h5>
+            <p class="m-0">Bài đăng:</p>
+            <p class="m-0">Chuyến đi:</p>
+            <p class="m-0">Cảm xúc:</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-sm-6" style="margin-top: 50px">
+        <div class="card">
+          <div class="card-body">
+            <div class="text-center">
+              <h4 class="gradient-2">Top 2 server</h4>
+              <img src="./images/users/7.jpg" class="rounded-circle" alt="" />
+              <h5 class="mt-3 mb-1">John Doe</h5>
+              <p class="m-0">Sales Man</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="active-member">
+              <div class="table-responsive">
+                <table class="table table-xs mb-0">
+                  <thead>
+                    <tr>
+                      <th>Customers</th>
+                      <th>Product</th>
+                      <th>Country</th>
+                      <th>Status</th>
+                      <th>Payment Method</th>
+                      <th>Activity</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img
+                          src="./images/avatar/1.jpg"
+                          class="rounded-circle mr-3"
+                          alt=""
+                        />Sarah Smith
+                      </td>
+                      <td>iPhone X</td>
+                      <td>
+                        <span>United States</span>
+                      </td>
+                      <td>
+                        <div>
+                          <div class="progress" style="height: 6px">
+                            <div
+                              class="progress-bar bg-success"
+                              style="width: 50%"
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <i class="fa fa-circle-o text-success mr-2"></i>
+                        Paid
+                      </td>
+                      <td>
+                        <span>Last Login</span>
+                        <span class="m-0 pl-3">10 sec ago</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="./images/avatar/2.jpg"
+                          class="rounded-circle mr-3"
+                          alt=""
+                        />Walter R.
+                      </td>
+                      <td>Pixel 2</td>
+                      <td><span>Canada</span></td>
+                      <td>
+                        <div>
+                          <div class="progress" style="height: 6px">
+                            <div
+                              class="progress-bar bg-success"
+                              style="width: 50%"
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <i class="fa fa-circle-o text-success mr-2"></i>
+                        Paid
+                      </td>
+                      <td>
+                        <span>Last Login</span>
+                        <span class="m-0 pl-3">50 sec ago</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="./images/avatar/3.jpg"
+                          class="rounded-circle mr-3"
+                          alt=""
+                        />Andrew D.
+                      </td>
+                      <td>OnePlus</td>
+                      <td><span>Germany</span></td>
+                      <td>
+                        <div>
+                          <div class="progress" style="height: 6px">
+                            <div
+                              class="progress-bar bg-warning"
+                              style="width: 50%"
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <i class="fa fa-circle-o text-warning mr-2"></i>
+                        Pending
+                      </td>
+                      <td>
+                        <span>Last Login</span>
+                        <span class="m-0 pl-3">10 sec ago</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="./images/avatar/6.jpg"
+                          class="rounded-circle mr-3"
+                          alt=""
+                        />
+                        Megan S.
+                      </td>
+                      <td>Galaxy</td>
+                      <td><span>Japan</span></td>
+                      <td>
+                        <div>
+                          <div class="progress" style="height: 6px">
+                            <div
+                              class="progress-bar bg-success"
+                              style="width: 50%"
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <i class="fa fa-circle-o text-success mr-2"></i>
+                        Paid
+                      </td>
+                      <td>
+                        <span>Last Login</span>
+                        <span class="m-0 pl-3">10 sec ago</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="./images/avatar/4.jpg"
+                          class="rounded-circle mr-3"
+                          alt=""
+                        />
+                        Doris R.
+                      </td>
+                      <td>Moto Z2</td>
+                      <td><span>England</span></td>
+                      <td>
+                        <div>
+                          <div class="progress" style="height: 6px">
+                            <div
+                              class="progress-bar bg-success"
+                              style="width: 50%"
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <i class="fa fa-circle-o text-success mr-2"></i>
+                        Paid
+                      </td>
+                      <td>
+                        <span>Last Login</span>
+                        <span class="m-0 pl-3">10 sec ago</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img
+                          src="./images/avatar/5.jpg"
+                          class="rounded-circle mr-3"
+                          alt=""
+                        />Elizabeth W.
+                      </td>
+                      <td>Notebook Asus</td>
+                      <td><span>China</span></td>
+                      <td>
+                        <div>
+                          <div class="progress" style="height: 6px">
+                            <div
+                              class="progress-bar bg-warning"
+                              style="width: 50%"
+                            ></div>
+                          </div>
+                        </div>
+                      </td>
+                      <td>
+                        <i class="fa fa-circle-o text-warning mr-2"></i>
+                        Pending
+                      </td>
+                      <td>
+                        <span>Last Login</span>
+                        <span class="m-0 pl-3">10 sec ago</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

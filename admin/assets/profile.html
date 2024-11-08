@@ -1,0 +1,181 @@
+<div class="content-body">
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-lg-4 col-xl-3 col-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="media align-items-center mb-4 d-flex flex-column align-items-center justify-content-center text-center">
+              <img class="mr-1" src="images/avatar/2.jpg" width="80" height="80" alt="" />
+              <div class="media-body">
+                <h4 class="mb-0">{{user.firstname}} {{user.lastname}}</h4>
+                <p class="text-muted mb-0">{{user.hometown}}</p>
+              </div>
+            </div>
+            <div class="row">
+             
+                <div class="card card-profile text-center">
+                  <span class="mb-1 text-primary"><i class="icon-people"></i></span>
+                  <h3 class="mb-0">263</h3>
+                  <p class="text-muted px-4">Following</p>
+                </div>
+              
+              <div class="">
+                <div class="card card-profile text-center">
+                  <span class="mb-1 text-warning"><i class="icon-user-follow"></i></span>
+                  <h3 class="mb-0">263</h3>
+                  <p class="text-muted">Followers</p>
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <button class="btn btn-danger px-5 btn-lg">Follow Now</button>
+              </div>
+            </div> <br>
+            <h4>Giới thiệu</h4>
+            <p class="text-muted">{{user.bio}}</p>
+            <ul class="card-profile__info">
+              <li class="mb-1">
+                <strong class="text-dark mr-4">Mobile</strong>
+                <span>01793931609</span>
+              </li>
+              <li>
+                <strong class="text-dark mr-4">Email</strong>
+                <span>{{user.email}}</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-7 col-xl-8 col-12">
+        <div class="loadMore">
+          <div class="central-meta item">
+            <div class="user-post">
+              <div class="friend-info">
+                <figure>
+                  <img src="images/resources/nearly1.jpg" alt="" />
+                </figure>
+                <div class="friend-name">
+                  <div class="more">
+                    <div class="more-post-optns">
+                      <i class="ti-more-alt"></i>
+                      <ul>
+                        <li><i class="fa fa-pencil-square-o"></i>Edit Post</li>
+                        <li><i class="fa fa-trash-o"></i>Delete Post</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <ins><a href="time-line.html" title="">{{user.firstname}} {{user.lastname}}</a> Post Album</ins>
+                  <span><i class="fa fa-globe"></i> published: {{post.createDate}}</span>
+                </div>
+                <div class="post-meta">
+                  <p>{{post.content}}</p>
+                  <figure>
+                    <div class="img-bunch">
+                      <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                          <figure>
+                            <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                              <img src="images/resources/album1.jpg" alt="" />
+                            </a>
+                          </figure>
+                          <figure>
+                            <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                              <img src="images/resources/album2.jpg" alt="" />
+                            </a>
+                          </figure>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6">
+                          <figure>
+                            <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                              <img src="images/resources/album6.jpg" alt="" />
+                            </a>
+                          </figure>
+                          <figure>
+                            <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                              <img src="images/resources/album5.jpg" alt="" />
+                            </a>
+                          </figure>
+                          <figure>
+                            <a href="#" title="" data-toggle="modal" data-target="#img-comt">
+                              <img src="images/resources/album4.jpg" alt="" />
+                            </a>
+                            <div class="more-photos">
+                              <span>+15</span>
+                            </div>
+                          </figure>
+                        </div>
+                      </div>
+                    </div>
+                  </figure>
+                  <div class="we-video-info">
+                    <ul>
+                      <li>
+                        <div class="likes heart" title="Like/Dislike">
+                          ❤ <span>{{post.likeCount}}</span>
+                        </div>
+                      </li>
+                      <li>
+                        <span class="comment" title="Comments">
+                          <i class="fa fa-commenting"></i>
+                          <ins>{{post.commentCount}}</ins>
+                        </span>
+                      </li>
+                    
+                    </ul>
+                    
+                  </div>
+                </div>
+                <div class="coment-area" style="display: block">
+                  <ul class="we-comet">
+                    <li>
+                      <div class="comet-avatar">
+                        <img src="images/resources/nearly3.jpg" alt="" />
+                      </div>
+                      <div class="we-comment">
+                        <h5><a href="time-line.html" title="">Jason Borne</a></h5>
+                        <p>We are working for the dance and sing songs. This video is very awesome for the youngsters. Please vote this video and like our channel.</p>
+                        <div class="inline-itms">
+                          <span>1 year ago</span>
+                          <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                          <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="comet-avatar">
+                        <img src="images/resources/comet-4.jpg" alt="" />
+                      </div>
+                      <div class="we-comment">
+                        <h5><a href="time-line.html" title="">Sophia</a></h5>
+                        <p>We are working for the dance and sing songs. This video is very awesome for the youngsters. <i class="em em-smiley"></i></p>
+                        <div class="inline-itms">
+                          <span>1 year ago</span>
+                          <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
+                          <a href="#" title=""><i class="fa fa-heart"></i><span>20</span></a>
+                        </div>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="#" title="" class="showmore underline">more comments+</a>
+                    </li>
+                    <li class="post-comment">
+                      <div class="comet-avatar">
+                        <img src="images/resources/nearly1.jpg" alt="" />
+                      </div>
+                      <div class="post-comt-box">
+                        <form>
+                          <textarea placeholder="Post a comment"></textarea>
+                          <button type="submit">Post</button>
+                        </form>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

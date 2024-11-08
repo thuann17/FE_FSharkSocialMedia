@@ -19,27 +19,27 @@ angular.module("authApp", []).controller("AuthController", [
 
     $scope.login = function () {
       $http
-        .post("http://localhost:8080/auth/generateToken", {
+        .post("http://localhost:8080/api/generateToken", {
           username: $scope.credentials.username,
           password: $scope.credentials.password,
         })
         .then(function (response) {
           var token = response.data["token"];
           var role = response.data["role"];
-         
+
           // Store token and role in cookies with a 7-day expiration
+          setCookie("username", $scope.credentials.username, 7);
           setCookie("authToken", token, 7);
           setCookie("roleName", role, 7);
           console.log("hello");
-
-          if (role === "user") {
-        
-            $scope.message = "Login successful Admin! Token: " + token;
-            window.location.href = "/user/index.html";
-          } else if (role === "admin") {
-            console.log("roleuser: " + role);
-            $scope.message = "Login successful User! Token: " + token;
+          console.log("Login successful! Token: " + token + "Role: " + role);
+          if (role == "User") {
+            window.location.href = "user/index.html";
+            console("Login successful user! Token: " + token);
+          } else if (role == "Admin") {
+          
             window.location.href = "/admin/index.html";
+            console("Login successful admin! Token: " + token);
           } else {
             $scope.message = "Unknown role!";
           }

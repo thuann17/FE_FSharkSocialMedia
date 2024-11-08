@@ -1,0 +1,136 @@
+<div class="content-body">
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="active-member">
+              <div class="table-responsive">
+                <table class="table table-xs mb-0">
+                  <thead>
+                    <tr>
+                      <th>Tên</th>
+                      <th>Bài đăng(tiêu đề)</th>
+                      <th>Ngày đăng</th>
+                      <th>Yêu thích</th>
+                      <th>Bình luận</th>
+                      <th>Trạng thái</th>
+                      <th>Chi tiết</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr ng-repeat="item in posts">
+                      <td>
+                        <img
+                          src="./images/avatar/1.jpg"
+                          class="rounded-circle mr-3"
+                          alt="Avatar"
+                        />
+                        {{item.username.username}}
+                      </td>
+                      <td>{{item.content}}</td>
+                      <!-- <td>
+                        <span ng-bind="item.createdate ? (item.createdate | date:'dd/MM/yyyy') : (currentDate | date:'dd/MM/yyyy')"></span>
+                      </td> -->
+                      <td>{{item.createdate}}</td>
+                      <td>{{item.likeCount}}</td>
+                      <td>{{item.commentCount}}</td>
+                      <td>
+                        <span>
+                          <label
+                            class="switch"
+                            data-username="{{item.id}}"
+                            ng-class="{'active': toggleStatus[item.id]}"
+                          >
+                            <input
+                              type="checkbox"
+                              ng-model="toggleStatus[item.id]"
+                              ng-change="toggleChanged(item.id)"
+                            />
+                            <span class="slider round"></span>
+                          </label>
+                        </span>
+                      </td>
+                      <!-- Modal for status confirmation -->
+                      <div
+                        class="modal fade"
+                        id="confirmModal"
+                        tabindex="-1"
+                        role="dialog"
+                      >
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">
+                                Xác nhận thay đổi trạng thái
+                              </h5>
+                              <button
+                                type="button"
+                                class="close"
+                                data-dismiss="modal"
+                                aria-label="Close"
+                                ng-click="cancelToggle()"
+                              >
+                                <span>&times;</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <p>
+                                Nhập mật khẩu của bạn để
+                                <strong>{{statusText}}</strong> bài đăng
+                                <strong>{{item.id}}</strong>!
+                              </p>
+                              <input
+                                type="password"
+                                class="form-control"
+                                ng-model="password"
+                                required
+                              />
+                            </div>
+                            <div class="modal-footer">
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                data-dismiss="modal"
+                                ng-click="cancelToggle()"
+                              >
+                                Hủy
+                              </button>
+                              <button
+                                type="button"
+                                class="btn btn-primary"
+                                ng-click="confirmToggle()"
+                              >
+                                Xác nhận
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <td><a href="#!/content/{{item.id}}">Xem chi tiết</a></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="bootstrap-pagination">
+              <nav>
+                <ul class="pagination justify-content-end">
+                  <li
+                    class="page-item"
+                    ng-repeat="page in pages"
+                    ng-class="{active: page === currentPage}"
+                  >
+                    <a class="page-link" ng-click="changePage(page)"
+                      >{{page}}</a
+                    >
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
