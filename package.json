@@ -1,7 +1,6 @@
 {
-  "name": "fe_fsharksocialmedia",
+  "name": "main",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "lite-server --port 3000",
@@ -10,19 +9,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "description": "",
   "devDependencies": {
     "lite-server": "^2.6.1"
-  },
-  "liteServer": {
-    "open": true,
-    "baseDir": "./",
-    "files": [
-      "./admin/*.html",
-      "./user/*.html",
-      "./other/*.html"
-    ]
-  },
-  "dependencies": {
-    "jwt-decode": "^4.0.0"
   }
 }
