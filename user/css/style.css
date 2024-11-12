@@ -18525,6 +18525,7 @@ table.adition tbody tr td {
     margin-top: 20px;            /* Add some top margin to space it from the top */
 }
 
+<<<<<<< Updated upstream
 .btn-blue {
     background-color: #007bff;  /* Blue color */
     color: white;               /* Text color */
@@ -18569,3 +18570,34 @@ table.adition tbody tr td {
 =======
 
 >>>>>>> main
+=======
+/* To make the button smaller */
+.small-btn {
+    font-size: 12px;  /* Adjust font size */
+    padding: 5px 10px;  /* Adjust padding to make the button smaller */
+    width: auto;  /* Set width to auto to fit content */
+   
+}
+
+/* To align the button to the right */
+.pull-right {
+    float: left;
+      /* Align button to the right */
+}
+
+/* Optional: Adjust button appearance if needed */
+.btn-blue {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left: 90px;
+}
+
+.btn-danger {
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-left:20px;
+}
+>>>>>>> Stashed changes

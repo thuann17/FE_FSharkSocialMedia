@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <title>Social Media - FShark</title>
+    <link
+      rel="icon"
+      href="user/images/fav.png"
+      type="image/png"
+      sizes="16x16"
+    />
+    <base href="/" />
+    <link rel="stylesheet" href="/user/css/main.min.css" />
+    <link rel="stylesheet" href="/user/css/weather-icons.min.css" />
+    <link rel="stylesheet" href="/user/css/toast-notification.css" />
+    <link rel="stylesheet" href="/user/css/page-tour.css" />
+    <link rel="stylesheet" href="/user/css/style.css" />
+    <link rel="stylesheet" href="/user/css/color.css" />
+    <link rel="stylesheet" href="/user/css/responsive.css" />
+    <link rel="stylesheet" href="/user/css/calendar.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
+   
+  </head>
+  <body>
+    <div class="wavy-wraper">
+      <div class="wavy">
+        <span style="--i: 1">F</span>
+        <span style="--i: 2">S</span>
+        <span style="--i: 3">H</span>
+        <span style="--i: 4">A</span>
+        <span style="--i: 5">R</span>
+        <span style="--i: 6">K</span>
+        <span style="--i: 7">.</span>
+        <span style="--i: 8">.</span>
+        <span style="--i: 9">.</span>
+      </div>
+    </div>
+    <div class="theme-layout">
+      <div class="topbar stick">
+        <div class="logo">
+          <a title="" href="newsfeed.html"
+            ><img src="user/images/logo.png" alt="" style="height: 65px;"
+          /></a>
+        </div>
+        <div class="top-area">
+          
+          <div class="top-search">
+            <form method="post" class="">
+              <input
+                type="text"
+                placeholder="Tìm kiếm..."
+              />
+              <button data-ripple><i class="ti-search"></i></button>
+            </form>
+          </div>
+          <div class="page-name">
+            <span>FSHARK SOCIAL MEDIA</span>
+          </div>
+          <ul class="setting-area">
+            <li>
+              <a href="newsfeed.html" title="Home" data-ripple=""
+                ><i class="fa fa-home"></i
+              ></a>
+            </li>
+            <li>
+              <a href="#" title="Friend Requests" data-ripple="">
+                <i class="fa fa-user"></i><em class="bg-red">5</em>
+              </a>
+              <div class="dropdowns">
+                <span
+                  >5 yêu cầu mới
+                  <a href="#" title="">Xem tất cả yêu cầu</a></span
+                >
+                <ul class="drops-menu">
+                  <li>
+                    <div>
+                      <figure>
+                        <img src="user/images/resources/thumb-2.jpg" alt="" />
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6><a href="#" title="">Loren</a></h6>
+                        <span><b>Amy</b> is mutule friend</span>
+                        <i>yesterday</i>
+                      </div>
+                      <div class="add-del-friends">
+                        <a href="#" title=""><i class="fa fa-heart"></i></a>
+                        <a href="#" title=""><i class="fa fa-trash"></i></a>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li>
+              <a href="#" title="Notification" data-ripple="">
+                <i class="fa fa-bell"></i><em class="bg-purple">7</em>
+              </a>
+              <div class="dropdowns">
+                <span
+                  >4 thông báo 
+                  <a href="#" title="">Mark all as read</a></span
+                >
+                <ul class="drops-menu">
+                  <li>
+                    <a href="notifications.html" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-1.jpg" alt="" />
+                        <span class="status f-online"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>sarah Loren</h6>
+                        <span>commented on your new profile status</span>
+                        <i>2 min ago</i>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="notifications.html" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-2.jpg" alt="" />
+                        <span class="status f-online"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>Jhon doe</h6>
+                        <span
+                          >Nicholas Grissom just became friends. Write on his
+                          wall.</span
+                        >
+                        <i>4 hours ago</i>
+                        <figure>
+                          <span
+                            >Today is Marina Valentine’s Birthday! wish for
+                            celebrating</span
+                          >
+                          <img src="user/images/birthday.png" alt="" />
+                        </figure>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="notifications.html" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-3.jpg" alt="" />
+                        <span class="status f-online"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>Andrew</h6>
+                        <span>commented on your photo.</span>
+                        <i>Sunday</i>
+                        <figure>
+                          <span
+                            >"Celebrity looks Beautiful in that outfit! We
+                            should see each"</span
+                          >
+                          <img src="user/images/resources/admin.jpg" alt="" />
+                        </figure>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="notifications.html" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-4.jpg" alt="" />
+                        <span class="status f-online"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>Tom cruse</h6>
+                        <span>nvited you to attend to his event Goo in</span>
+                        <i>May 19</i>
+                      </div>
+                    </a>
+                    <span class="tag">New</span>
+                  </li>
+                  <li>
+                    <a href="notifications.html" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-5.jpg" alt="" />
+                        <span class="status f-online"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>Amy</h6>
+                        <span>Andrew Changed his profile picture. </span>
+                        <i>dec 18</i>
+                      </div>
+                    </a>
+                    <span class="tag">New</span>
+                  </li>
+                </ul>
+                <a href="notifications.html" title="" class="more-mesg"
+                  >View All</a
+                >
+              </div>
+            </li>
+            <li>
+              <a href="#" title="Messages" data-ripple=""
+                ><i class="fa fa-commenting"></i><em class="bg-blue">9</em></a
+              >
+              <div class="dropdowns">
+                <span
+                  >5 New Messages
+                  <a href="#" title="">Mark all as read</a></span
+                >
+                <ul class="drops-menu">
+                  <li>
+                    <a class="show-mesg" href="#" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-1.jpg" alt="" />
+                        <span class="status f-online"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>sarah Loren</h6>
+                        <span
+                          ><i class="ti-check"></i> Hi, how r u dear ...?</span
+                        >
+                        <i>2 min ago</i>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="show-mesg" href="#" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-2.jpg" alt="" />
+                        <span class="status f-offline"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>Jhon doe</h6>
+                        <span
+                          ><i class="ti-check"></i> We’ll have to check that at
+                          the office and see if the client is on board
+                          with</span
+                        >
+                        <i>2 min ago</i>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="show-mesg" href="#" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-3.jpg" alt="" />
+                        <span class="status f-online"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>Andrew</h6>
+                        <span>
+                          <i class="fa fa-paperclip"></i>Hi Jack's! It’s Diana,
+                          I just wanted to let you know that we have to
+                          reschedule..</span
+                        >
+                        <i>2 min ago</i>
+                      </div>
+                    </a>
+                  </li>
+                  <li>
+                    <a class="show-mesg" href="#" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-4.jpg" alt="" />
+                        <span class="status f-offline"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>Tom cruse</h6>
+                        <span
+                          ><i class="ti-check"></i> Great, I’ll see you
+                          tomorrow!.</span
+                        >
+                        <i>2 min ago</i>
+                      </div>
+                    </a>
+                    <span class="tag">New</span>
+                  </li>
+                  <li>
+                    <a class="show-mesg" href="#" title="">
+                      <figure>
+                        <img src="user/images/resources/thumb-5.jpg" alt="" />
+                        <span class="status f-away"></span>
+                      </figure>
+                      <div class="mesg-meta">
+                        <h6>Amy</h6>
+                        <span
+                          ><i class="fa fa-paperclip"></i> Sed ut perspiciatis
+                          unde omnis iste natus error sit
+                        </span>
+                        <i>2 min ago</i>
+                      </div>
+                    </a>
+                    <span class="tag">New</span>
+                  </li>
+                </ul>
+                <a href="chat-messenger.html" title="" class="more-mesg"
+                  >View All</a
+                >
+              </div>
+            </li>
+            <li>
+              <a href="#" title="Languages" data-ripple=""
+                ><i class="fa fa-globe"></i><em>VI</em></a
+              >
+              <div class="dropdowns languages">
+                <div data-gutter="10" class="row">
+                  <div class="col-md-3">
+                    <ul class="dropdown-meganav-select-list-lang">
+                      <li>
+                        <a href="#">
+                          <img
+                            title="Image Title"
+                            alt="Image Alternative text"
+                            src="user/images/flags/UK.png"
+                          />English(UK)
+                        </a>
+                      </li>
+                      <li class="active">
+                        <a href="#">
+                          <img
+                            title="Image Title"
+                            alt="Image Alternative text"
+                            src="user/images/flags/NAM.png"
+                          />Tiếng Việt
+                        </a>
+                      </li>
+                    
+                    </ul>
+                  </div>
+                 
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+        
+      </div>
+      <!-- topbar -->
+      <ng-view></ng-view>
+      
+      <div class="bottombar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <span class="copyright">© FShark 2024. All rights reserved.</span>
+              <i><img src="user/images/credit-cards.png" alt="" /></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="user/js/main.min.js"></script>
+    <script src="user/js/calendar.js"></script>
+    <script src="user/js/script.js"></script>
+  
+    <!-- <script src="user/js/jquery-stories.js"></script> -->
+    <script src="user/js/toast-notificatons.js"></script>
+    <!-- <script src="../cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script> -->
+    <!-- For timeline slide show -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA8c55_YHLvDHGACkQscgbGLtLRdxBDCfI"></script>
+    <!-- for location picker map -->
+    <script src="user/js/locationpicker.jquery.js"></script>
+    <!-- for loaction picker map -->
+    <script src="user/js/map-init.js"></script>
+    <!-- map initilasition -->
+    <script src="user/js/page-tourintro.js"></script>
+    <script src="user/js/page-tour-init.js"></script>
+    <script src="user/js/script.js"></script>
+    <script src="route.js"></script>
+    <script src="user/angularjs/service/aboutService.js"></script>
+    <script src="user/angularjs/service/friendService.js"></script>
+    <script src="user/angularjs/service/postService.js"></script>
+    <script src="user/angularjs/controller/AboutController.js"></script>
+    <script src="user/angularjs/controller/IndexController.js"></script>
+    <script src="user/angularjs/controller/FriendController.js"></script>
+    <script>
+      jQuery(document).ready(function ($) {
+        $("#us3").locationpicker({
+          location: {
+            latitude: -8.681013,
+            longitude: 115.23506410000005,
+          },
+          radius: 0,
+          inputBinding: {
+            latitudeInput: $("#us3-lat"),
+            longitudeInput: $("#us3-lon"),
+            radiusInput: $("#us3-radius"),
+            locationNameInput: $("#us3-address"),
+          },
+          enableAutocomplete: true,
+          onchanged: function (currentLocation, radius, isMarkerDropped) {
+            // Uncomment line below to show alert on each Location Changed event
+            //alert("Location changed. New location (" + currentLocation.latitude + ", " + currentLocation.longitude + ")");
+          },
+        });
+
+        if ($.isFunction($.fn.toast)) {
+          $.toast({
+            heading: "Welcome To FShark",
+            text: "",
+            showHideTransition: "slide",
+            icon: "success",
+            loaderBg: "#fa6342",
+            position: "bottom-right",
+            hideAfter: 3000,
+          });
+
+        }
+      });
+    </script>
+  </body>
+</html>
+
+
+<!-- Confirmation Modal -->
+<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xóa</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+              Bạn có chắc chắn muốn xóa bạn bè này?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+              <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
+          </div>
+      </div>
+  </div>
+</div>
