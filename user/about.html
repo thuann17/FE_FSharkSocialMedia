@@ -1,0 +1,395 @@
+
+<section>
+  <div class="gap2 gray-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="row merged20" id="page-contents">
+            <div class="user-profile">
+              <figure>
+                <div class="edit-pp">
+                  <label class="fileContainer">
+                    <i class="fa fa-camera"></i>
+                    <input type="file" />
+                  </label>
+                </div>
+                <img src="images/resources/profile-image.jpg" alt="" />
+              </figure>
+              <div class="profile-section">
+                <div class="row">
+                  <div class="col-lg-2 col-md-3">
+                    <div class="profile-author">
+                      <div class="profile-author-thumb">
+                        <img alt="author" src="images/resources/author.jpg" />
+                        <div class="edit-dp">
+                          <label class="fileContainer">
+                            <i class="fa fa-camera"></i>
+                            <input type="file" />
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="author-content">
+                        <a class="h6 author-name" href="about.html"
+                          >{{ user.lastname }} {{ user.firstname }}
+                        </a>
+                        <div class="country">{{ user.hometown }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-10 col-md-9">
+                    <ul class="profile-menu">
+                      <li>
+                        <a class="" href="#!/{{user.username}}/timeline">Dòng thời gian</a>
+                      </li>
+                      <li>
+                        <a class="active" href="#!/{{user.username}}">Về tôi</a>
+                      </li>
+                      <li>
+                        <a class="" href="#!/{{user.username}}/friends">Gợi ý kết bạn</a>
+                      </li>
+                      <li>
+                        <a class="" href="timeline-photos.html">Ảnh</a>
+                      </li>
+                     
+                      
+                    </ul>
+                    <ol class="folw-detail">
+                      <li><span>Followers</span><ins>1.3K</ins></li>
+                      <li><span>Following</span><ins>22</ins></li>
+                    </ol>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- user profile banner  -->
+            <div class="col-lg-4 col-md-4">
+              <aside class="sidebar">
+                <div class="central-meta stick-widget">
+                  <span class="create-post">Thông tin cá nhân</span>
+                  <div class="personal-head">
+                    <span class="f-title"
+                      ><i class="fa fa-user"></i>Giới thiệu:</span
+                    >
+                    <p>{{user.bio}}</p>
+                    <span class="f-title"
+                      ><i class="fa fa-birthday-cake"></i> Ngày sinh:</span
+                    >
+                    <p>{{user.birthday}}</p>
+                    <span class="f-title"
+                      ><i class="fa fa-male"></i> Giới tính:</span
+                    >
+                    <p>{{ getGender() }}</p>
+                    <span class="f-title"
+                      ><i class="fa fa-handshake-o"></i> Sống tại:</span
+                    >
+                    <p>{{ user.currency}}</p>
+
+                    <span class="f-title"
+                      ><i class="fa fa-envelope"></i> Email & Website:</span
+                    >
+                    <p>
+                      <a href="wpkixx.html" title="">{{user.email}}</a>
+                    </p>
+                  </div>
+                </div>
+              </aside>
+            </div>
+            <div class="col-lg-8 col-md-8" >
+              <div class="central-meta p-3 bg-light rounded">
+                <span class="create-post font-weight-bold"
+                  >Bạn bè ({{friends.length}})
+                  <a href="timeline-friends2.html" title="" class="float-right"
+                    >Xem tất cả</a
+                  >
+                </span>
+                <div style="max-height: 300px; overflow-y: auto">
+                  <ul class="list-group">
+                    <li class="list-group-item d-flex align-items-center" ng-repeat="friend in friends">
+                      <img
+                        src="images/resources/recent1.jpg"
+                        alt=""
+                        class="rounded-circle"
+                        width="50"
+                        height="50"
+                      />
+                      <div class="ml-3" >
+                        <a href="#!/{{friend.friendUserName}}" title="" class="font-weight-bold">{{ friend.friendName }}</a>
+                        <span class="d-block text-muted">1 mutual friend</span>
+                        <ul class="list-inline mt-1">
+                          <li class="list-inline-item">
+                            <a class="send-mesg" href="#" title="Send Message">
+                              <i class="fa fa-commenting"></i>
+                            </a>
+                          </li>
+                          <li class="list-inline-item">
+                            <a title="remove friend" ng-click="deleteFriend(friend.id)">
+                              <i class="fa fa-user-times text-danger"></i>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <!-- friends list -->
+              <div class="central-meta">
+                <span class="create-post">Bài đăng </span>
+                <div class="user-post">
+                  <div class="friend-info">
+                    <figure>
+                      <img
+                        src="images/resources/nearly1.jpg"
+                        alt=""
+                        style="width: 40px; height: 40px"
+                      />
+                    </figure>
+                    <div class="friend-name" style="margin-left: 5px">
+                      <div class="more">
+                        <div class="more-post-optns">
+                          <i class="ti-more-alt"></i>
+                          <ul>
+                            <li>
+                              <i class="fa fa-pencil-square-o"></i>Edit Post
+                            </li>
+                            <li><i class="fa fa-trash-o"></i>Delete Post</li>
+                            <li class="bad-report">
+                              <i class="fa fa-flag"></i>Report Post
+                            </li>
+                            <li>
+                              <i class="fa fa-address-card-o"></i>Boost This
+                              Post
+                            </li>
+                            <li><i class="fa fa-clock-o"></i>Schedule Post</li>
+                            <li>
+                              <i class="fa fa-wpexplorer"></i>Select as featured
+                            </li>
+                            <li>
+                              <i class="fa fa-bell-slash-o"></i>Turn off
+                              Notifications
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                      <ins
+                        ><a href="time-line.html" title="">Jack Carter</a> Post
+                        Album</ins
+                      >
+                      <span
+                        ><i class="fa fa-globe"></i> published: September,15
+                        2020 19:PM
+                      </span>
+                    </div>
+                    <div class="post-meta" style="font-size: 14px">
+                      <p>
+                        Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus
+                        eget condimentum rhoncus, sem quam semper libero.
+                      </p>
+                      <figure>
+                        <div class="img-bunch">
+                          <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                              <figure>
+                                <a
+                                  href="#"
+                                  title=""
+                                  data-toggle="modal"
+                                  data-target="#img-comt"
+                                >
+                                  <img
+                                    src="images/resources/album1.jpg"
+                                    alt=""
+                                    style="width: 90%; height: auto"
+                                  />
+                                </a>
+                              </figure>
+                              <figure>
+                                <a
+                                  href="#"
+                                  title=""
+                                  data-toggle="modal"
+                                  data-target="#img-comt"
+                                >
+                                  <img
+                                    src="images/resources/album2.jpg"
+                                    alt=""
+                                    style="width: 90%; height: auto"
+                                  />
+                                </a>
+                              </figure>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                              <figure>
+                                <a
+                                  href="#"
+                                  title=""
+                                  data-toggle="modal"
+                                  data-target="#img-comt"
+                                >
+                                  <img
+                                    src="images/resources/album6.jpg"
+                                    alt=""
+                                    style="width: 90%; height: auto"
+                                  />
+                                </a>
+                              </figure>
+                              <figure>
+                                <a
+                                  href="#"
+                                  title=""
+                                  data-toggle="modal"
+                                  data-target="#img-comt"
+                                >
+                                  <img
+                                    src="images/resources/album5.jpg"
+                                    alt=""
+                                    style="width: 90%; height: auto"
+                                  />
+                                </a>
+                              </figure>
+                              <figure>
+                                <a
+                                  href="#"
+                                  title=""
+                                  data-toggle="modal"
+                                  data-target="#img-comt"
+                                >
+                                  <img
+                                    src="images/resources/album4.jpg"
+                                    alt=""
+                                    style="width: 90%; height: auto"
+                                  />
+                                </a>
+                                
+                              </figure>
+                            </div>
+                          </div>
+                        </div>
+                      </figure>
+                      <div class="we-video-info">
+                        <ul>
+                          <li>
+                            <div class="likes heart" title="Like/Dislike">
+                              ❤ <span>2K</span>
+                            </div>
+                          </li>
+                          <li>
+                            <span class="comment" title="Comments">
+                              <i class="fa fa-commenting"></i>
+                              <ins>52</ins>
+                            </span>
+                          </li>
+
+                          <li>
+                            <span>
+                              <a class="share-pst" href="#" title="Share">
+                                <i class="fa fa-share-alt"></i>
+                              </a>
+                              <ins>20</ins>
+                            </span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="coment-area" style="display: block">
+                      <ul class="we-comet">
+                        <li>
+                          <div class="comet-avatar">
+                            <img
+                              src="images/resources/nearly3.jpg"
+                              alt=""
+                              style="width: 30px; height: 30px"
+                            />
+                          </div>
+                          <div class="we-comment">
+                            <h5>
+                              <a href="time-line.html" title="">Jason borne</a>
+                            </h5>
+                            <p>
+                              we are working for the dance and sing songs. this
+                              video is very awesome for the youngster. please
+                              vote this video and like our channel
+                            </p>
+                            <div class="inline-itms">
+                              <span>1 year ago</span>
+                              <a class="we-reply" href="#" title="Reply"
+                                ><i class="fa fa-reply"></i
+                              ></a>
+                              <a href="#" title=""
+                                ><i class="fa fa-heart"></i><span>20</span></a
+                              >
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <div class="comet-avatar">
+                            <img
+                              src="images/resources/comet-4.jpg"
+                              alt=""
+                              style="width: 30px; height: 30px"
+                            />
+                          </div>
+                          <div class="we-comment">
+                            <h5>
+                              <a href="time-line.html" title="">Sophia</a>
+                            </h5>
+                            <p>
+                              we are working for the dance and sing songs. this
+                              video is very awesome for the youngster.
+                              <i class="em em-smiley"></i>
+                            </p>
+                            <div class="inline-itms">
+                              <span>1 year ago</span>
+                              <a class="we-reply" href="#" title="Reply"
+                                ><i class="fa fa-reply"></i
+                              ></a>
+                              <a href="#" title=""
+                                ><i class="fa fa-heart"></i><span>20</span></a
+                              >
+                            </div>
+                          </div>
+                        </li>
+                        <li>
+                          <a href="#" title="" class="showmore underline"
+                            >more comments+</a
+                          >
+                        </li>
+                        <li class="post-comment">
+                          <div class="comet-avatar">
+                            <img
+                              src="images/resources/nearly1.jpg"
+                              alt=""
+                              style="width: 30px; height: 30px"
+                            />
+                          </div>
+                          <div class="post-comt-box">
+                            <form method="post">
+                              <textarea
+                                placeholder="Post your comment"
+                                style="font-size: 12px"
+                              ></textarea>
+                              <div class="add-smiles">
+                                <div class="uploadimage">
+                                  <i class="fa fa-image"></i>
+                                  <label class="fileContainer">
+                                    <input type="file" />
+                                  </label>
+                                </div>
+                              </div>
+                            </form>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

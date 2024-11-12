@@ -19,24 +19,49 @@
 
               <div class="profile-section">
                 <div class="row">
-                  <div class="col-lg-10 col-md-9">
-                      <ul class="profile-menu">
-                          <li>
-                              <a class="active" href="index/{{user.username}}">Dòng thời gian</a>
-                          </li>
-                          <li>
-                              <a class="" href="about/{{user.username}}">Về tôi</a>
-                          </li>
-                          <li>
-                              <a class="" href="/friends/{{user.username}}">Gợi ý kết bạn</a>
-                          </li>
-                          <li>
-                            <a class="" href="schedule/{{user.username}}">Lịch trình</a>
-                          </li>
-                      </ul>
-                  </div>
-              </div>
+                  <div class="col-lg-2 col-md-3">
+                    <div class="profile-author">
+                      <div class="profile-author-thumb">
+                        <img alt="author" src="images/resources/author.jpg" />
+                        <div class="edit-dp">
+                          <label class="fileContainer">
+                            <i class="fa fa-camera"></i>
+                            <input type="file" />
+                          </label>
+                        </div>
+                      </div>
 
+                      <div class="author-content">
+                        <a class="h6 author-name" href="about.html"
+                          >{{ user.lastname }} {{ user.firstname }}</a
+                        >
+                        <div class="country">{{ user.hometown }}</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-lg-10 col-md-9">
+                    <ul class="profile-menu">
+                      <li>
+                        <a class="active" href="#!/{{user.username}}/timeline">Dòng thời gian</a>
+                      </li>
+                      <li>
+                        <a class="" href="#!/{{user.username}}">Về tôi</a>
+                      </li>
+                      <li>
+                        <a class="" href="#!/{{user.username}}/friends">Gợi ý kết bạn</a>
+                      </li>
+                      <li>
+                        <a class="" href="timeline-photos.html">Ảnh</a>
+                      </li>
+                      
+                     
+                    </ul>
+                    <ol class="folw-detail">  
+                      <li><span>Followers</span><ins>1.3K</ins></li>
+                      <li><span>Following</span><ins>22</ins></li>
+                    </ol>
+                  </div>
+                </div>
               </div>
             </div>
             <!-- user profile banner  -->
@@ -227,7 +252,7 @@
                 <span class="create-post">Bài đăng:</span>
                 <div class="new-postbox">
                   <figure>
-                    <img src="user/images/resources/admin.jpg" alt="" />
+                    <img src="images/resources/admin.jpg" alt="" />
                   </figure>
                   <div class="newpst-input">
                     <form method="post">
@@ -299,7 +324,7 @@
                   <div class="user-post" ng-repeat="post in posts">
                     <div class="friend-info">
                         <figure>
-                            <img src="user/images/resources/nearly1.jpg" alt="" />
+                            <img src="images/resources/nearly1.jpg" alt="" />
                         </figure>
                         <div class="friend-name">
                             <div class="more">
@@ -322,9 +347,9 @@
                         <div class="post-meta">
                             <figure>
                                 <a title="" data-strip-group="mygroup" class="strip vdeo-link" data-strip-options="width: 700,height: 450,youtube: { autoplay: 1 }">
-                                  <div ng-repeat="postImage in post.postimages">
-                                    <img ng-src="/user/images/{{ postImage.image }}" alt="" />
-                                  </div>    
+                                  <div ng-repeat="image in post.images">
+                                    <img ng-src="{{ getImageSrc(post.images[0]) }}" alt="" />
+                                  </div>  
                                 </a>
                             </figure>
                             <div class="description">
