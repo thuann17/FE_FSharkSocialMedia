@@ -1,4 +1,4 @@
-app.controller("aboutCtrl", function ($scope, $routeParams, AboutService, FriendService) {
+app.controller("indexCtrl", function ($scope, $routeParams, AboutService, FriendService) {
 
     $scope.accounts = [];
     $scope.toggleStatus = {};

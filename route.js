@@ -3,14 +3,24 @@ app.constant("API", "http://localhost:8080/api/");
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
     // user
-    .when("/index", {
+    .when("/index/:username", {
       templateUrl: "user/views/index.html",
       controller: "indexCtrl",
     })
-    .when("/about",{
+    .when("/about/:username",{
       templateUrl: "user/views/about.html",
       controller: "aboutCtrl",
     })
+    .when("/friends/:username",{
+      templateUrl: "user/views/timeline-friends.html",
+      controller: "friendsCtrl",
+    })
+    .when("/schedule/:username",{
+      templateUrl: "user/views/schedule.html",
+      controller: "scheduleCtrl",
+    })
+
+
      // user
     // Admin
     .when("/dashboard", {
