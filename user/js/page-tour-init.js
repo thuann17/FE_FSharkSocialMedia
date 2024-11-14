@@ -6,10 +6,6 @@ $(document).on('ready', function(){
   // var startbtn   = $('#startdemotour');
   introguide.setOptions({
    steps: [
-<<<<<<< Updated upstream
-<<<<<<< HEAD
-
-=======
    {
        element: '.main-menu > span',
        intro: 'Main Menu',
@@ -35,8 +31,7 @@ $(document).on('ready', function(){
        intro: 'Search New People, Pages, Groups etc',
        position: 'bottom'
    },
->>>>>>> main
-=======
+
 //    {
 //        element: '.menu-small',
 //        intro: 'Compact Menu',
@@ -52,7 +47,7 @@ $(document).on('ready', function(){
 //        intro: 'Search New People, Pages, Groups etc',
 //        position: 'bottom'
 //    },
->>>>>>> Stashed changes
+
    
    ]
   });
