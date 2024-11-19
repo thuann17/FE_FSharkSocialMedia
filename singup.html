@@ -16,10 +16,10 @@
     <link rel="stylesheet" href="/user/css/responsive.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
   </head>
-  <body ng-controller="AuthController">
+  <body>
     <div class="www-layout">
       <section>
-        <div class="gap no-gap signin whitish medium-opacity">
+        <div class="gap no-gap signin whitish medium-opacity register">
           <div
             class="bg-image"
             style="background-image: url(images/resources/theme-bg.jpg)"
@@ -29,39 +29,13 @@
               <div class="col-lg-8">
                 <div class="big-ad">
                   <figure><img src="images/logo2.png" alt="" /></figure>
-                  <h1>Chào mừng đến mạng xã hội FShark</h1>
+                  <h1>Welcome to the Pitnik</h1>
                   <p>
-                    FShark là mạng xã hội có thể được sử dụng để kết nối mọi
-                    người. Sử dụng cho các hoạt động xã hội đa mục đích như công
-                    việc, hẹn hò, đăng bài, viết blog và nhiều hơn nữa. Tham gia
-                    & Kết bạn thú vị trên khắp thế giới ngay bây giờ!!!
+                    Pitnik is a social network template that can be used to
+                    connect people. use this template for multipurpose social
+                    activities like job, dating, posting, bloging and much more.
+                    Now join & Make Cool Friends around the world !!!
                   </p>
-
-                  <div class="fun-fact">
-                    <div class="row">
-                      <div class="col-lg-3 col-md-3 col-sm-4">
-                        <div class="fun-box">
-                          <i class="ti-check-box"></i>
-                          <h6>Registered People</h6>
-                          <span>1,01,242</span>
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-sm-4">
-                        <div class="fun-box">
-                          <i class="ti-layout-media-overlay-alt-2"></i>
-                          <h6>Posts Published</h6>
-                          <span>21,03,245</span>
-                        </div>
-                      </div>
-                      <div class="col-lg-3 col-md-3 col-sm-4">
-                        <div class="fun-box">
-                          <i class="ti-user"></i>
-                          <h6>Online Users</h6>
-                          <span>40,145</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
                   <div class="barcode">
                     <figure>
                       <img src="images/resources/Barcode.jpg" alt="" />
@@ -96,64 +70,50 @@
               <div class="col-lg-4">
                 <div class="we-login-register">
                   <div class="form-title">
-                    <i class="fa fa-key"></i>Đăng nhập
+                    <i class="fa fa-key"></i>Sign Up
                     <span
-                      >Hãy đăng nhập ngay và gặp gỡ những người bạn tuyệt vời
-                      trên khắp thế giới.</span
+                      >Sign Up now and meet the awesome friends around the
+                      world.</span
                     >
                   </div>
-                  <div class="login-container">
-                    <form class="we-form" ng-submit="login()">
-                      <input
-                        type="text"
-                        ng-model="credentials.username"
-                        placeholder="Tên đăng nhập..."
-                      />
-                      <input
-                        type="password"
-                        ng-model="credentials.password"
-                        placeholder="Mật khẩu..."
-                      />
-                      <input
-                        type="checkbox"
-                        ng-model="credentials.rememberMe"
-                      /><label>Ghi nhớ đăng nhập?</label>
-                      <button type="submit" data-ripple="">Đăng nhập</button>
-                      <a class="forgot underline" href="#" title=""
-                        >Quên mật khẩu?</a
-                      >
-                    </form>
-                    <div ng-if="message" class="message">{{ message }}</div>
-                  </div>
-
+                  <form class="we-form" method="post">
+                    <input type="text" placeholder="Email" />
+                    <input type="password" placeholder="Password" />
+                    <input type="text" placeholder="+1234-567-987" />
+                    <input type="checkbox" /><label>Send code to Mobile</label>
+                    <button type="submit" data-ripple="">Register</button>
+                    <a class="forgot underline" href="#" title=""
+                      >forgot password?</a
+                    >
+                  </form>
                   <a
-                    class="with-smedia facebook"
-                    href="#"
-                    title=""
                     data-ripple=""
+                    title=""
+                    href="#"
+                    class="with-smedia facebook"
                     ><i class="fa fa-facebook"></i
                   ></a>
                   <a
-                    class="with-smedia twitter"
-                    href="#"
-                    title=""
                     data-ripple=""
+                    title=""
+                    href="#"
+                    class="with-smedia twitter"
                     ><i class="fa fa-twitter"></i
                   ></a>
                   <a
-                    class="with-smedia instagram"
-                    href="#"
-                    title=""
                     data-ripple=""
+                    title=""
+                    href="#"
+                    class="with-smedia instagram"
                     ><i class="fa fa-instagram"></i
                   ></a>
-                  <a class="with-smedia google" href="#" title="" data-ripple=""
+                  <a data-ripple="" title="" href="#" class="with-smedia google"
                     ><i class="fa fa-google-plus"></i
                   ></a>
                   <span
-                    >Bạn chưa có tài khoản?
+                    >already have an account?
                     <a class="we-account underline" href="#" title=""
-                      >Đăng ký ngay</a
+                      >Sign in</a
                     ></span
                   >
                 </div>
@@ -165,6 +125,5 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/user/js/main.min.js"></script>
-    <script src="login.js"></script>
   </body>
 </html>

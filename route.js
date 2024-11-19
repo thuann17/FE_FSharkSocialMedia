@@ -52,15 +52,15 @@ app.config(function ($routeProvider, $locationProvider) {
     })
     .when("/account/:username", {
       templateUrl: "admin/assets/views/accountdetail.html",
-      controller: "postDetailCtrl",
+      controller: "accountDetailCtrl",
     })
     // Admin
     .otherwise({
       redirectTo: "/index",
     });
   // Cấu hình html5Mode
-  $locationProvider.html5Mode({
-    enabled: true,
-    requireBase: false,
-  });
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: false,
+  // });
 });
