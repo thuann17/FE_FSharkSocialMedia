@@ -1,4 +1,4 @@
-var app = angular.module("myApp", ["ngRoute"]);
+var app = angular.module("myApp", ["ngRoute", "ngCookies"]);
 app.constant("API", "http://localhost:8080/api/");
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
@@ -59,8 +59,8 @@ app.config(function ($routeProvider, $locationProvider) {
       redirectTo: "/index",
     });
   // Cấu hình html5Mode
-  // $locationProvider.html5Mode({
-  //   enabled: true,
-  //   requireBase: false,
-  // });
+  $locationProvider.html5Mode({
+    enabled: true,
+    requireBase: false,
+  });
 });
