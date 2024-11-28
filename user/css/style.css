@@ -1034,6 +1034,7 @@ header.sticky {
 }
 
 
+
 /*--- dropdowns ---*/
 
 .dropdowns {
@@ -1195,6 +1196,51 @@ header.sticky {
     text-transform: capitalize;
     width: 100%;
 }
+
+.setting-area li .dropdowns {
+    display: none;
+    position: absolute;
+    left: 0;
+    background-color: #ffffff;
+    width: 400px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    padding: 5px;
+    z-index: 10;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Show the dropdown when the parent list item is hovered */
+.setting-area li:hover .dropdowns {
+    display: block;
+    opacity: 1;
+}
+
+/* For dropdowns inside setting-area with a specific background color */
+.setting-area li .dropdowns a {
+    color: #333;
+    text-decoration: none;
+}
+
+/* Dropdown menu styles */
+.drops-menu li {
+    margin-bottom: 10px;
+}
+
+.drops-menu li .mesg-meta {
+    margin-left: 10px;
+}
+
+.drops-menu li .add-del-friends {
+    margin-left: 10px;
+}
+
+.drops-menu li .add-del-friends a {
+    color: #333;
+    margin-right: 5px;
+}
+
 /*help dropdown ---*/
 .dropdowns > form {
     display: inline-block;
@@ -18517,87 +18563,48 @@ table.adition tbody tr td {
 }
 .modal{
 	z-index: 999999 !important;
-}
-<<<<<<< HEAD
+}   
 .button-container {
     display: flex;               /* Use flexbox for alignment */
     justify-content: flex-end;   /* Align the button to the right */
     margin-top: 20px;            /* Add some top margin to space it from the top */
 }
+/* General layout adjustments */
 
-<<<<<<< Updated upstream
-.btn-blue {
-    background-color: #007bff;  /* Blue color */
-    color: white;               /* Text color */
-    font-size: 12px;            /* Smaller text size */
-    padding: 5px 10px;          /* Smaller padding */
-    border: none;               /* Remove border */
-    border-radius: 4px;         /* Rounded corners */
-    cursor: pointer;           /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth color change on hover */
-    float: right;
-}
-
-.btn-blue:hover {
-    background-color: #0056b3;  /* Darker blue on hover */
-}
-
-.btn-blue:focus {
-    outline: none;               /* Remove focus outline */
-}
-
-
-.btn-danger {
-    margin-right: 10px;
-    background-color: #007bff;  /* Blue color */
-    color: white;               /* Text color */
-    font-size: 12px;            /* Smaller text size */
-    padding: 5px 10px;          /* Smaller padding */
-    border: none;               /* Remove border */
-    border-radius: 4px;         /* Rounded corners */
-    cursor: pointer;           /* Pointer cursor on hover */
-    transition: background-color 0.3s ease; /* Smooth color change on hover */
-    float: right;
-}
-
-.btn-danger:hover {
-    background-color: #0056b3;  /* Darker blue on hover */
-}
-
-.btn-danger:focus {
-    outline: none;               /* Remove focus outline */
-}
-=======
-
->>>>>>> main
-=======
-/* To make the button smaller */
-.small-btn {
-    font-size: 12px;  /* Adjust font size */
-    padding: 5px 10px;  /* Adjust padding to make the button smaller */
-    width: auto;  /* Set width to auto to fit content */
-   
-}
-
-/* To align the button to the right */
-.pull-right {
-    float: left;
-      /* Align button to the right */
-}
-
-/* Optional: Adjust button appearance if needed */
-.btn-blue {
+  .btn-blue {
     background-color: #007bff;
-    color: white;
+    color: #fff;
     border: none;
+    padding: 8px 15px;
     border-radius: 5px;
-    margin-left: 90px;
+    margin-right: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-blue:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-danger:hover {
+    background-color: #a71d2a;
+  }
+  .likes.heart {
+    cursor: pointer;
+    font-size: 24px;
 }
 
-.btn-danger {
-    color: white;
-    border: none;
-    border-radius: 5px;
-    margin-left:20px;
+.likes.heart.liked {
+    color: red;  /* Change the heart color to red when liked */
 }
->>>>>>> Stashed changes

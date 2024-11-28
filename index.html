@@ -25,7 +25,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/stompjs@2.3.3/lib/stomp.min.js"></script>
-   
   </head>
   <body>
     <div class="wavy-wraper">
@@ -45,17 +44,13 @@
       <div class="topbar stick">
         <div class="logo">
           <a title="" href="newsfeed.html"
-            ><img src="user/images/logo.png" alt="" style="height: 65px;"
+            ><img src="user/images/logo.png" alt="" style="height: 65px"
           /></a>
         </div>
         <div class="top-area">
-          
           <div class="top-search">
             <form method="post" class="">
-              <input
-                type="text"
-                placeholder="Tìm kiếm..."
-              />
+              <input type="text" placeholder="Tìm kiếm..." />
               <button data-ripple><i class="ti-search"></i></button>
             </form>
           </div>
@@ -73,9 +68,9 @@
                 <i class="fa fa-user"></i><em class="bg-red">5</em>
               </a>
               <div class="dropdowns">
-                <span
+                <spanzz
                   >5 yêu cầu mới
-                  <a href="#" title="">Xem tất cả yêu cầu</a></span
+                  <a href="#" title="">Xem tất cả yêu cầu</a></spanzz
                 >
                 <ul class="drops-menu">
                   <li>
@@ -103,8 +98,7 @@
               </a>
               <div class="dropdowns">
                 <span
-                  >4 thông báo 
-                  <a href="#" title="">Mark all as read</a></span
+                  >4 thông báo <a href="#" title="">Mark all as read</a></span
                 >
                 <ul class="drops-menu">
                   <li>
@@ -322,20 +316,17 @@
                           />Tiếng Việt
                         </a>
                       </li>
-                    
                     </ul>
                   </div>
-                 
                 </div>
               </div>
             </li>
           </ul>
         </div>
-        
       </div>
       <!-- topbar -->
       <ng-view></ng-view>
-      
+
       <div class="bottombar">
         <div class="container">
           <div class="row">
@@ -347,10 +338,10 @@
         </div>
       </div>
     </div>
+   
     <script src="user/js/main.min.js"></script>
-    <script src="user/js/calendar.js"></script>
     <script src="user/js/script.js"></script>
-  
+
     <!-- <script src="user/js/jquery-stories.js"></script> -->
     <script src="user/js/toast-notificatons.js"></script>
     <!-- <script src="../cdnjs.cloudflare.com/ajax/libs/gsap/1.18.2/TweenMax.min.js"></script> -->
@@ -371,6 +362,8 @@
     <script src="user/angularjs/controller/AboutController.js"></script>
     <script src="user/angularjs/controller/IndexController.js"></script>
     <script src="user/angularjs/controller/FriendController.js"></script>
+    <script src="user/angularjs/controller/SheduleController.js"></script>
+ 
     <script>
       jQuery(document).ready(function ($) {
         $("#us3").locationpicker({
@@ -402,31 +395,44 @@
             position: "bottom-right",
             hideAfter: 3000,
           });
-
         }
-      });
+      });      
     </script>
+    <script src="user/js/calendar.js"></script>
   </body>
 </html>
 
-
 <!-- Confirmation Modal -->
-<div class="modal fade" id="confirmDeleteModal" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+<div
+  class="modal fade"
+  id="confirmDeleteModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="confirmDeleteModalLabel"
+  aria-hidden="true"
+>
   <div class="modal-dialog" role="document">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xóa</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body">
-              Bạn có chắc chắn muốn xóa bạn bè này?
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-              <button type="button" class="btn btn-danger" id="confirmDeleteBtn">Xóa</button>
-          </div>
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xóa</h5>
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">Bạn có chắc chắn muốn xóa bạn bè này?</div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Hủy
+        </button>
+        <button type="button" class="btn btn-danger" id="confirmDeleteBtn">
+          Xóa
+        </button>
+      </div>
+    </div>
   </div>
 </div>

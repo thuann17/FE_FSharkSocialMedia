@@ -1,44 +1,73 @@
 <section>
-	<div class="col-lg-12 col-md-9">
-		<ul class="profile-menu">
-		  <li>
-			  <a  href="/index/{{user.username}}">Dòng thời gian</a>
-		  </li>
-		  <li>
-			  <a class="" href="/about/{{user.username}}">Về tôi</a>
-		  </li>
-		  <li>
-			  <a class="" href="/friends/{{user.username}}">Gợi ý kết bạn</a>
-		  </li>
-		  <li>
-			<a class="active" href="schedule/{{user.username}}">Lịch trình</a>
-		  </li>
-	  </ul>
-		<ol class="folw-detail">
-		  <li><span>Followers</span><ins>1.3K</ins></li>
-		  <li><span>Following</span><ins>22</ins></li>
-		</ol>
-	  </div>
-		<div class="page-header">
-			<div class="header-inner">
-				<h2>Event Calendar</h2>
-				<p>
-					Welcome to Pitnik Social Network. Here you’ll find the event calendar for save event and reminder notificaton, & ready made elemets as you want. you can use to show on your custom pages.
-				</p>
-			</div>
-			<figure><img src="/user/images/resources/baner-typography.png" alt=""></figure>
-		</div>
-	</section>
-    <section>
-		<div class="gap gray-bg">
-			<div class="container">
-				<div class="row" id="page-contents">
-					<div class=" col-lg-12">
-						<div class="central-meta">
-							<div id="calendar"></div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
+  <div class="col-lg-12 col-md-9">
+    <ul class="profile-menu">
+      <li>
+        <a href="/index/{{user.username}}">Dòng thời gian</a>
+      </li>
+      <li>
+        <a class="" href="/about/{{user.username}}">Về tôi</a>
+      </li>
+      <li>
+        <a class="" href="/friends/{{user.username}}">Gợi ý kết bạn</a>
+      </li>
+      <li>
+        <a class="active" href="schedule/{{user.username}}">Lịch trình</a>
+      </li>
+    </ul>
+  </div>
+  <div class="page-header">
+    <div class="header-inner">
+      <h2>LÊN LỊCH TRÌNH</h2>
+      <p>
+        Chào mừng bạn đến với Mạng xã hội FShark. Tại đây, bạn sẽ tìm thấy lịch
+        sự kiện để lưu thông báo sự kiện và lời nhắc cũng như các thành phần
+        được tạo sẵn theo ý muốn của bạn. bạn có thể sử dụng để hiển thị trên
+        các trang tùy chỉnh của mình.
+      </p>
+    </div>
+    <figure>
+      <img src="/user/images/resources/baner-typography.png" alt="" />
+    </figure>
+  </div>
+</section>
+<section>
+  <div class="calendar-container">
+    <div class="calendar-header">
+      <button ng-click="changeMonth(-1)" class="nav-btn">❮</button>
+      <span class="month-year">{{ monthYear }}</span>
+      <button ng-click="changeMonth(1)" class="nav-btn">❯</button>
+    </div>
+    <div class="calendar-days">
+      <div class="day-header" ng-repeat="day in dayHeaders">{{ day }}</div>
+    </div>
+    <div id="calendar" class="calendar-grid">
+      <div
+        ng-repeat="day in calendarDays track by $index"
+        ng-class="getDayClasses(day)"
+        ng-click="selectDay(day)"
+      >
+        {{ day || '' }}
+        <div class="note" ng-if="notes[monthYear + '-' + day]">
+          {{ notes[monthYear + '-' + day] }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal để ghi chú -->
+  <div class="note-modal" ng-show="selectedDay !== null">
+    <div class="modal-content">
+      <h3>Ghi chú cho ngày {{ selectedDay }} {{ monthYear }}</h3>
+      <textarea
+        ng-model="currentNote"
+        rows="5"
+        cols="30"
+        placeholder="Nhập ghi chú..."
+      ></textarea>
+      <div class="modal-actions">
+        <button ng-click="saveNote()">Lưu</button>
+        <button ng-click="closeModal()">Đóng</button>
+      </div>
+    </div>
+  </div>
+</section>

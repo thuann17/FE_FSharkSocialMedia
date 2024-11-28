@@ -7,12 +7,12 @@ app.service("AboutService", function ($http, API) {
         return $http.get(url);  // Return the HTTP GET request promise
     };
 
+    //lấy tài khoản cá nhân
+    this.getAccounts = function(username) {
+      // API URL with the username
+      let url = `${API}${username}`;  // Use backticks for string interpolation
 
-
-    this.getPostsWithImages = function(username) {
-      return $http.get('http://localhost:8080/api/posts', {  // API endpoint để lấy bài đăng theo username
-          params: { username: username }  // Truyền params vào request
-      });
+      return $http.get(url);  // Return the HTTP GET request promise
   };
 
 
@@ -43,14 +43,14 @@ app.service("AboutService", function ($http, API) {
     this.fetchUserByUsername = function (username) {
       return $http.get(`${API}profile/${username}`);
     };
+
     // Lấy ID để hiện thông tin chi tiết bài đăng
     this.fetchPostById = function (postId) {
       return $http.get(`${API}post/${postId}`);
     };
-    // Lấy Post theo username
-    this.fetchUserPosts = function (username) {
-      let url = `${API}profile/${username}/posts`;
-      return $http.get(url);
-    };
+
+ 
+
+    
   });
   

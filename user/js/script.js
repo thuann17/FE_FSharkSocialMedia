@@ -372,6 +372,7 @@ $('.save-post, .bane, .get-link').on("click", function() {
 		}
 	}
 
+
 	
 //===== Search Filter =====//
 	(function ($) {
@@ -400,6 +401,9 @@ $('.save-post, .bane, .get-link').on("click", function() {
 		$(this).change();
 	  });
 	}
+
+
+	
 
 //search friends widget
 	$(function () {
@@ -1243,6 +1247,9 @@ jQuery(".post-comt-box textarea").on("keydown", function(event) {
 		}
 	};
 })();
+
+
+
 
 
 	

@@ -1,5 +1,4 @@
-app.controller("indexCtrl", function ($scope, $routeParams, AboutService, FriendService) {
-
+app.controller("indexCtrl", function ($scope, $routeParams, AboutService, FriendService, PostService) {
     $scope.accounts = [];
     $scope.toggleStatus = {};
     $scope.currentPage = 1;
@@ -23,7 +22,7 @@ app.controller("indexCtrl", function ($scope, $routeParams, AboutService, Friend
         var username = $routeParams.username;  // Get the username from route params
 
         // Call the fetchAccounts method from AboutService with the username
-        AboutService.fetchAccounts(username)  // Calling API with username
+        AboutService.getAccounts(username)  // Calling API with username
             .then(function(response) {
                 // On success, assign the response data to $scope.user
                 $scope.user = response.data;
@@ -90,151 +89,30 @@ app.controller("indexCtrl", function ($scope, $routeParams, AboutService, Friend
         });
     };
     
+   
+  //Hiển thị bài đang
+  $scope.getPosts = function () {
+    PostService.getPostsWithUserDetails($scope.username)
 
-    $scope.changePage = function (newPage) {
-      if (newPage > 0 && newPage <= $scope.getPageCount()) {
-        $scope.fetchAccounts($scope.searchKeyword, newPage);
-      }
-    };
-  
-    $scope.getPageCount = function () {
-      return Math.ceil($scope.totalItems / $scope.pageSize);
-    };
-  
-    $scope.generatePages = function () {
-      var pageCount = $scope.getPageCount();
-      var currentPage = $scope.currentPage;
-      var visiblePages = 2;
-      $scope.pages = [];
-      $scope.pages.push(1);
-      var start = Math.max(currentPage - visiblePages, 2);
-      var end = Math.min(currentPage + visiblePages, pageCount - 1);
-      if (start > 2) {
-        $scope.pages.push("...");
-      }
-      for (var i = start; i <= end; i++) {
-        $scope.pages.push(i);
-      }
-      if (end < pageCount - 1) {
-        $scope.pages.push("...");
-      }
-      if (pageCount > 1) {
-        $scope.pages.push(pageCount);
-      }
-    };
-  
-    $scope.searchAccounts = function () {
-      $scope.fetchAccounts($scope.searchKeyword, 1);
-    };
-  
-   // $scope.fetchAccounts(null, 1);
-  
-    // stompClient.connect({}, function (frame) {
-    //   stompClient.subscribe("/topic/account-status", function (message) {
-    //     var updatedUser = JSON.parse(message.body);
-    //     var index = $scope.accounts.findIndex(
-    //       (account) => account.username === updatedUser.username
-    //     );
-    //     if (index !== -1) {
-    //       $scope.accounts[index].active = updatedUser.active;
-    //       $scope.toggleStatus[updatedUser.username] = updatedUser.active;
-    //       $scope.$apply();
-    //     }
-    //   });
-    // });
-    $scope.originalStatus = {};
-  
-    $scope.toggleChanged = function (username) {
-      $scope.selectedAccount = username;
-      const newStatus = $scope.toggleStatus[username];
-      $scope.statusText = newStatus ? "kích hoạt" : "vô hiệu hóa";
-      $scope.username = username;
-  
-      $scope.originalStatus[username] = !newStatus;
-      $("#confirmModal").modal("show");
-    };
-  
-    $scope.cancelToggle = function () {
-      $scope.toggleStatus[$scope.selectedAccount] =
-        $scope.originalStatus[$scope.selectedAccount];
-      $("#confirmModal").modal("hide");
-    };
-  
-    $scope.confirmToggle = function () {
-      const newStatus = $scope.toggleStatus[$scope.selectedAccount];
-      // Kiểm tra xem mật khẩu đã được nhập chưa
-      if (!$scope.password) {
-        Swal.fire({
-          icon: "warning",
-          title: "Cảnh báo",
-          text: "Vui lòng nhập mật khẩu để xác nhận!",
-          position: "center",
-        });
-        return;
-      }
-      // Kiểm tra mật khẩu
-      ApiService.updateAccountStatus($scope.selectedAccount, newStatus).then(
-        function (response) {
-          if ($scope.password === "123") {
-            console.log(
-              "Cập nhật trạng thái thành công cho " + $scope.selectedAccount
-            );
-            Swal.fire({
-              icon: "success",
-              title: "Thành công",
-              text: "Xác nhận thành công!",
-              position: "center",
-            });
-            delete $scope.originalStatus[$scope.selectedAccount];
-            $scope.password = ""; // Reset password input
-            $("#confirmModal").modal("hide"); // Đóng modal
-          } else {
-            Swal.fire({
-              icon: "error",
-              title: "Thất bại",
-              text: "Sai mật khẩu!",
-              position: "center",
-            });
-          }
-        },
-        function (error) {
-          console.error("Lỗi khi cập nhật trạng thái:", error);
-          Swal.fire({
-            icon: "error",
-            title: "Lỗi",
-            text: "Có lỗi khi thực hiện!",
-            position: "center",
+      .then(function (response) {
+        if (response.data && response.data.length > 0) {
+          $scope.posts = response.data; // Gán bài viết
+          $scope.error = null; // Xóa lỗi
+
+          $scope.posts.forEach(function (post) {
+            $scope.checkLikeStatus(post.id, $scope.username);
           });
+        } else {
+          $scope.posts = [];
+          $scope.error = "Không tìm thấy bài viết!";
         }
-      );
-    };
-
-     //Hiển thị bài đang
-     $scope.loadPosts = function() {
-        // Trạng thái đang tải
-        $scope.isLoading = true;
-        $scope.error = '';  // Reset lỗi mỗi lần gọi API
-
-        // Kiểm tra nếu username không có giá trị
-        if (!$scope.username) {
-            $scope.error = 'Vui lòng nhập tên người dùng.';
-            $scope.isLoading = false;
-            return;
-        }
-
-        // Gọi service để lấy bài đăng theo username
-        AboutService.getPostsWithImages($scope.username).then(function(response) {
-            $scope.posts = response.data;  // Gán dữ liệu trả về cho biến posts
-            console.log($scope.posts);  // Kiểm tra dữ liệu trả về
-            $scope.isLoading = false;  // Đổi trạng thái khi đã tải xong
-        }, function(error) {
-            // Xử lý lỗi khi gọi API thất bại
-            $scope.error = 'Không thể tải bài đăng. Vui lòng thử lại.';  // Thông báo lỗi khi có sự cố
-            $scope.isLoading = false;  // Đổi trạng thái khi có lỗi
-        });
-    };
-
-
+      })
+      .catch(function (error) {
+        console.error("Error fetching posts:", error);
+        $scope.error = "Có lỗi xảy ra khi lấy bài viết!";
+      });
+  };
+  //
     $scope.getImageSrc = function(imageString) {
         // Match the image filename after "user/image="
         var matches = imageString.match(/user\/image=([^,]+)/);
@@ -247,7 +125,116 @@ app.controller("indexCtrl", function ($scope, $routeParams, AboutService, Friend
         return '';  // Return empty string if no match is found
     };
     
+    $scope.toggleLike = function (postId, username) {
+      // Find the post from the list first
+      const post = $scope.posts.find((p) => p.id === postId);
+      if (!post) {
+        console.error("Post not found!");
+        return;
+      }
+
+      if (post.likedByUser) {
+       
+        PostService.removeLike(postId, username)
+          .then(function (response) {
+            console.log("Post unliked successfully", response.data);
+           
+            post.likedByUser = false; 
+            post.countLike = (post.countLike || 0) - 1; 
+          })
+          .catch(function (error) {
+            console.error("Error unliking post", error);
+            alert(
+              "Failed to unlike the post: " +
+                (error.data
+                  ? error.data.message
+                  : error.statusText || "Unknown error")
+            );
+          });
+      } else {
+      
+        PostService.likePost(postId, username)
+          .then(function (response) {
+            console.log("Post liked successfully", response.data);
+
+            post.likedByUser = true; 
+            post.countLike = (post.countLike || 0) + 1; 
+          })
+          .catch(function (error) {
+            console.error("Error liking post", error);
+            alert(
+              "Failed to like the post: " +
+                (error.data
+                  ? error.data.message
+                  : error.statusText || "Unknown error")
+            );
+          });
+      }
+    };
+
+
+    $scope.isPostLiked = function (postId, username) {
+      const post = $scope.posts.find((p) => p.id === postId);
+      return post ? post.likedByUser : false;
+    };
+
+    //check like
+    $scope.checkLikeStatus = function (postId, username) {
+  
+      PostService.checkIfUserLiked(postId, username)
+        .then(function (response) {
+          const post = $scope.posts.find((p) => p.id === postId);
+          if (post) {
+            post.likedByUser = response.data; // true or false
+          }
+        })
+        .catch(function (error) {
+          console.error("Error checking like status", error);
+          alert("Failed to check like status");
+        });
+    };
     
+    
+    //lấy cmt
+    $scope.loadPostsWithComments = function () {
+      PostService.getPostsWithUserDetails($scope.username)
+          .then(function (response) {
+              if (response.data && response.data.length > 0) {
+                  $scope.posts = response.data;
+                  $scope.error = null;
+  
+                  // Lấy comment và like status
+                  $scope.posts.forEach(function (post) {
+                      PostService.getCommentsByPostId(post.id)
+                          .then(function (commentResponse) {
+                              post.comments = commentResponse.data || [];
+  
+                              // Kiểm tra trạng thái like cho từng bình luận
+                              post.comments.forEach(function (comment) {
+                                  PostService.checkLike(comment.id, $scope.username)
+                                      .then(function (likeResponse) {
+                                          comment.isLiked = likeResponse.data; // Đặt trạng thái liked
+                                      });
+  
+                                  // Lấy số lượt like cho bình luận
+                                  PostService.getLikeCountByCommentId(comment.id)
+                                      .then(function (likeCountResponse) {
+                                          comment.likeCount = likeCountResponse.data; // Lưu số lượt like
+                                      });
+                              });
+                          });
+                  });
+              } else {
+                  $scope.posts = [];
+                  $scope.error = "Không tìm thấy bài viết!";
+              }
+          })
+          .catch(function (error) {
+              console.error("Error fetching posts:", error);
+              $scope.error = "Có lỗi xảy ra khi lấy bài viết!";
+          });
+  };
+  
 
     $scope.getGender = function() {
         return $scope.user && $scope.user.gender ? 'Nam' : 'Nữ'; // gender là true cho Nam và false cho Nữ
@@ -255,7 +242,8 @@ app.controller("indexCtrl", function ($scope, $routeParams, AboutService, Friend
 
     $scope.getFriendsByUsername();
     $scope.getUserByUsername();
-    $scope.loadPosts();
+    $scope.getPosts();
+    $scope.loadPostsWithComments();
 
   });
   

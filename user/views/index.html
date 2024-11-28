@@ -134,7 +134,7 @@
                   <ul class="followers">
                     <li>
                       <figure>
-                        <img src="images/resources/friend-avatar2.jpg" alt="" />
+                        <img src="user/images/resources/friend-avatar2.jpg" alt="" />
                       </figure>
                       <div class="friend-meta">
                         <h4>
@@ -145,7 +145,7 @@
                     </li>
                     <li>
                       <figure>
-                        <img src="images/resources/friend-avatar4.jpg" alt="" />
+                        <img src="user/images/resources/friend-avatar4.jpg" alt="" />
                       </figure>
                       <div class="friend-meta">
                         <h4><a href="time-line.html" title="">Issabel</a></h4>
@@ -154,7 +154,7 @@
                     </li>
                     <li>
                       <figure>
-                        <img src="images/resources/friend-avatar6.jpg" alt="" />
+                        <img src="user/images/resources/friend-avatar6.jpg" alt="" />
                       </figure>
                       <div class="friend-meta">
                         <h4><a href="time-line.html" title="">Andrew</a></h4>
@@ -163,7 +163,7 @@
                     </li>
                     <li>
                       <figure>
-                        <img src="images/resources/friend-avatar8.jpg" alt="" />
+                        <img src="user/images/resources/friend-avatar8.jpg" alt="" />
                       </figure>
                       <div class="friend-meta">
                         <h4><a href="time-line.html" title="">Sophia</a></h4>
@@ -172,7 +172,7 @@
                     </li>
                     <li>
                       <figure>
-                        <img src="images/resources/friend-avatar3.jpg" alt="" />
+                        <img src="user/images/resources/friend-avatar3.jpg" alt="" />
                       </figure>
                       <div class="friend-meta">
                         <h4><a href="time-line.html" title="">Allen</a></h4>
@@ -295,28 +295,13 @@
                             </div>
                             <div class="coment-area" style="display: block">
                                 <ul class="we-comet">
-                                    <li ng-repeat="comment in post.comments">
-                                        <div class="comet-avatar">
-                                            <img src="images/resources/nearly3.jpg" alt="" />
-                                        </div>
-                                        <div class="we-comment">
-                                            <h5><a href="time-line.html" title="">{{ comment.username }}</a></h5>
-                                            <p>{{ comment.text }}</p>
-                                            <div class="inline-itms">
-                                                <span>{{ comment.date | date:'yyyy-MM-dd' }}</span>
-                                                <a class="we-reply" href="#" title="Reply"><i class="fa fa-reply"></i></a>
-                                                <a href="#" title=""><i class="fa fa-heart"></i><span>{{ comment.likes }}</span></a>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    
                                     <li class="post-comment">
                                         <div class="comet-avatar">
-                                            <img src="images/resources/nearly1.jpg" alt="" />
+                                            <img src="user/images/resources/nearly1.jpg" alt="" />
                                         </div>
                                         <div class="post-comt-box">
                                             <form ng-submit="submitComment(post.id)">
-                                                <textarea placeholder="Post your comment" ng-model="newComment.text"></textarea>
+                                                <textarea placeholder="Bình luận..." ng-model="newComment.text"></textarea>
                                                 <div class="add-smiles">
                                                     <div class="uploadimage">
                                                         <i class="fa fa-image"></i>
@@ -331,9 +316,33 @@
                                                         <i class="em em-laughing"></i>
                                                         <i class="em em-angry"></i>
                                                     </div>
+                                                   
                                                 </div>
-                                                <button type="submit">Post</button>
+                                                <button class="btn btn-danger" type="submit">Đăng</button>
+                                                <hr>
+                                              
                                             </form>
+                                            <li ng-repeat="comment in post.comments">
+                                              <div class="comet-avatar">
+                                                <img src="user/images/resources/comet-4.jpg" alt="">
+                                              </div>
+                                              <div class="we-comment">
+                                                <h5><a href="time-line.html" title="">{{ comment.username.lastname }} {{ comment.username.firstname }} </a></h5>
+                                                <p>{{ comment.content }}
+                                                  <i class="em em-smiley"></i>
+                                                </p>
+                                                <div class="inline-itms">
+                                                  <span>{{ comment.createdate | date:'medium' }}</span>
+                                                  <div class="like-info">
+                                                    <span class="like-count">{{ comment.likeCount || 0 }} likes</span>
+                                                    <span ng-class="{'liked': comment.isLiked}">❤️</span>
+                                                </div>
+                                                </div>
+                                              </div>
+                                            </li>
+                                            <li>
+                                              <a href="#" title="" class="showmore underline">more comments+</a>
+                                            </li>
                                         </div>
                                     </li>
                                 </ul>
@@ -341,14 +350,19 @@
                             <div class="we-video-info">
                                 <ul>
                                     <li>
-                                        <div class="likes heart" title="Like/Dislike">
-                                            ❤ <span>2K</span>
-                                        </div>
+                                      <div
+                                      class="likes heart"
+                                      ng-click="toggleLike(post.id, user.username)"
+                                      title="Like/Dislike"
+                                      ng-class="{'liked': post.likedByUser}"
+                                    >
+                                      ❤ <span>{{ post.countLike || 0 }}</span>
+                                    </div>
                                     </li>
                                     <li>
                                         <span class="comment" title="Comments">
                                             <i class="fa fa-commenting"></i>
-                                            <ins>52</ins>
+                                            <ins>{{ post.countComment || 0 }}</ins>
                                         </span>
                                     </li>
                                     <li>

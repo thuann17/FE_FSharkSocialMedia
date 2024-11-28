@@ -6,37 +6,17 @@ $(document).on('ready', function(){
   // var startbtn   = $('#startdemotour');
   introguide.setOptions({
    steps: [
-<<<<<<< Updated upstream
-<<<<<<< HEAD
 
-=======
-   {
-       element: '.main-menu > span',
-       intro: 'Main Menu',
-       position: 'left'
-   },
-   {
-       element: '.ti-settings.main-menu',
-       intro: 'General Settings',
-       position: 'left'
-   },
-   {
-       element: '.menu-small',
-       intro: 'Compact Menu',
-       position: 'right'
-   },
-   {
-       element: '.add-loc',
-       intro: 'Click Here to Share Location in the Post',
-       position: 'top'
-   },
-   {
-       element: '.top-search',
-       intro: 'Search New People, Pages, Groups etc',
-       position: 'bottom'
-   },
->>>>>>> main
-=======
+//    {
+//        element: '.main-menu > span',
+//        intro: 'Main Menu',
+//        position: 'left'
+//    },
+//    {
+//        element: '.ti-settings.main-menu',
+//        intro: 'General Settings',
+//        position: 'left'
+//    },
 //    {
 //        element: '.menu-small',
 //        intro: 'Compact Menu',
@@ -52,7 +32,22 @@ $(document).on('ready', function(){
 //        intro: 'Search New People, Pages, Groups etc',
 //        position: 'bottom'
 //    },
->>>>>>> Stashed changes
+
+//    {
+//        element: '.menu-small',
+//        intro: 'Compact Menu',
+//        position: 'right'
+//    },
+//    {
+//        element: '.add-loc',
+//        intro: 'Click Here to Share Location in the Post',
+//        position: 'top'
+//    },
+//    {
+//        element: '.top-search',
+//        intro: 'Search New People, Pages, Groups etc',
+//        position: 'bottom'
+//    },
    
    ]
   });
