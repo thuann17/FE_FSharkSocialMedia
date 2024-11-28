@@ -1,27 +1,30 @@
-var app = angular.module("myApp", ["ngRoute"]);
+var app = angular.module("myApp", ["ngRoute", "ngCookies"]);
 app.constant("API", "http://localhost:8080/api/");
 app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
     // user
-    .when("/index/:username", {
+    .when("/index", {
       templateUrl: "user/views/index.html",
       controller: "indexCtrl",
     })
-    .when("/about/:username",{
+    .when("/about/:username", {
       templateUrl: "user/views/about.html",
       controller: "aboutCtrl",
     })
-    .when("/friends/:username",{
+    .when("/friends/:username", {
       templateUrl: "user/views/timeline-friends.html",
       controller: "friendsCtrl",
     })
-    .when("/schedule/:username",{
+    .when("/schedule/:username", {
       templateUrl: "user/views/schedule.html",
       controller: "scheduleCtrl",
     })
 
-
-     // user
+    .when("/chat", {
+      templateUrl: "user/views/chat.html",
+      controller: "chatCtrl",
+    })
+    // user
     // Admin
     .when("/dashboard", {
       templateUrl: "admin/assets/views/dashboard.html",
@@ -49,15 +52,15 @@ app.config(function ($routeProvider, $locationProvider) {
     })
     .when("/account/:username", {
       templateUrl: "admin/assets/views/accountdetail.html",
-      controller: "postDetailCtrl",
+      controller: "accountDetailCtrl",
     })
-       // Admin
+    // Admin
     .otherwise({
       redirectTo: "/index",
     });
   // Cấu hình html5Mode
-  $locationProvider.html5Mode({
-    enabled: true,
-    requireBase: false,
-  });
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: false,
+  // });
 });

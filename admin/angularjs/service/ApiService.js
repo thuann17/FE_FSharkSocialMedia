@@ -43,4 +43,7 @@ app.service("ApiService", function ($http, API) {
     let url = `${API}profile/${username}/posts`;
     return $http.get(url);
   };
+  this.getUserByUsername = function (username) {
+    return $http.get(`${API}/api/admin/profile` + username);
+  };
 });
