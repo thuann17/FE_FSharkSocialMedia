@@ -59,7 +59,7 @@ app.controller("chatCtrl", function ($scope, $cookies, ChatService) {
 
   // Kết nối WebSocket
   $scope.connect = function () {
-    if ($scope.currentUser.trim()) {
+    if ($scope.currentUser.trim()) {  
       $scope.connecting = true;
       var socket = new SockJS("http://localhost:8080/ws");
       stompClient = Stomp.over(socket);

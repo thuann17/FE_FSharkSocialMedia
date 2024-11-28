@@ -59,8 +59,8 @@ app.config(function ($routeProvider, $locationProvider) {
       redirectTo: "/index",
     });
   // Cấu hình html5Mode
-  $locationProvider.html5Mode({
-    enabled: true,
-    requireBase: false,
-  });
+  // $locationProvider.html5Mode({
+  //   enabled: true,
+  //   requireBase: false,
+  // });
 });
